@@ -2,273 +2,1046 @@
 <html lang="zh-CN">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>黄子骜 · Ziao Huang｜作品集 PDF</title>
+  <title>黄子骜 · Ziao Huang｜作品集（PPT 版）</title>
   <style>
-    @page { size: A4; margin: 14mm 14mm 16mm; }
+    @page { size: landscape; margin: 0; }
     :root {
       --ink: #14151a;
       --mute: #5c606b;
       --amber: #c45c26;
-      --line: rgba(20, 21, 26, 0.14);
-      --paper: #f4f5f7;
+      --paper: #eef0f3;
+      --surface: #fbfcfd;
+      --line: rgba(20, 21, 26, 0.12);
+      --ok: #15803d;
+      --warn: #b45309;
     }
     * { box-sizing: border-box; }
     html, body {
-      margin: 0;
+      margin: 0; padding: 0;
       color: var(--ink);
-      font: 11pt/1.55 "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", Helvetica, Arial, sans-serif;
-      background: #fff;
+      background: #111;
+      font: 15px/1.55 "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", Helvetica, Arial, sans-serif;
       -webkit-print-color-adjust: exact;
       print-color-adjust: exact;
     }
     a { color: var(--amber); text-decoration: none; }
-    h1, h2, h3 { margin: 0 0 0.35em; line-height: 1.25; font-weight: 700; }
-    h1 { font-size: 22pt; letter-spacing: 0.02em; }
-    h2 {
-      font-size: 14pt;
-      border-bottom: 1.5px solid var(--ink);
-      padding-bottom: 0.25em;
-      margin-top: 1.4em;
+    h1, h2, h3, p, ul, ol, table { margin: 0; }
+    ul, ol { padding-left: 1.2em; }
+    li + li { margin-top: 0.28em; }
+    strong { font-weight: 700; }
+
+    .slide {
+      width: 100vw;
+      height: 100vh;
+      padding: 7vh 5vw 6vh;
+      background: var(--paper);
+      page-break-after: always;
+      page-break-inside: avoid;
+      break-after: page;
+      break-inside: avoid;
+      position: relative;
+      overflow: hidden;
+      display: block;
     }
-    h3 { font-size: 11.5pt; margin-top: 1em; }
-    p { margin: 0 0 0.65em; }
-    ul { margin: 0.2em 0 0.8em; padding-left: 1.2em; }
-    li { margin: 0.2em 0; }
-    .muted { color: var(--mute); }
-    .cover {
-      min-height: 90vh;
+    .slide-inner {
+      height: 100%;
       display: flex;
       flex-direction: column;
-      justify-content: space-between;
-      page-break-after: always;
-      padding-top: 8mm;
+    }
+    .slide:last-child { page-break-after: auto; break-after: auto; }
+    .slide::after {
+      content: attr(data-folio);
+      position: absolute;
+      right: 14mm; bottom: 6mm;
+      font-size: 11px; color: var(--mute); letter-spacing: 0.08em;
     }
     .eyebrow {
       color: var(--amber);
-      font-size: 9pt;
-      letter-spacing: 0.18em;
+      font-size: 12px;
+      letter-spacing: 0.2em;
       text-transform: uppercase;
-      margin-bottom: 1.2em;
+      margin-bottom: 8px;
+      font-weight: 600;
     }
-    .lead { font-size: 12pt; max-width: 38em; color: var(--ink); }
-    .meta {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 10px 24px;
-      margin-top: 28px;
-      padding: 14px 16px;
-      background: var(--paper);
-      border-left: 3px solid var(--amber);
+    .slide h1 {
+      font-size: 36px;
+      line-height: 1.2;
+      letter-spacing: 0.01em;
+      margin-bottom: 10px;
     }
-    .meta dt { font-size: 8.5pt; color: var(--mute); margin: 0; }
-    .meta dd { margin: 0 0 6px; font-weight: 600; }
-    .phones {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 18px;
-      margin-top: 28px;
-      align-items: end;
+    .slide h2 {
+      font-size: 28px;
+      line-height: 1.25;
+      margin-bottom: 12px;
     }
-    .phones figure { margin: 0; text-align: center; }
-    .phones img {
-      width: 100%;
-      max-width: 190px;
-      height: auto;
-      border-radius: 18px;
+    .slide h3 {
+      font-size: 18px;
+      margin: 10px 0 6px;
+    }
+    .lead { font-size: 17px; max-width: 52em; color: var(--ink); }
+    .body { font-size: 15px; color: var(--ink); }
+    .mute { color: var(--mute); }
+    .grow { flex: 1; min-height: 0; }
+
+    .meta-row {
+      display: flex; flex-wrap: wrap; gap: 8px;
+      margin: 12px 0 0;
+    }
+    .chip {
+      display: inline-block;
+      padding: 4px 10px;
       border: 1px solid var(--line);
-      box-shadow: 0 10px 24px rgba(20, 21, 26, 0.12);
+      background: var(--surface);
+      font-size: 13px;
     }
-    .phones figcaption { margin-top: 8px; font-size: 9pt; color: var(--mute); }
-    .footer-line {
-      display: flex;
-      justify-content: space-between;
-      gap: 12px;
-      font-size: 9pt;
-      color: var(--mute);
-      border-top: 1px solid var(--line);
-      padding-top: 10px;
-      margin-top: 24px;
-    }
-    .case { page-break-before: always; }
-    .shot-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 10px;
-      margin: 12px 0 16px;
-    }
-    .shot-grid img {
-      width: 100%;
-      height: auto;
-      border: 1px solid var(--line);
-      border-radius: 8px;
-      background: var(--paper);
-    }
-    .shot-wide {
-      margin: 12px 0 16px;
-    }
-    .shot-wide img {
-      width: 100%;
-      max-height: 220px;
-      object-fit: contain;
-      object-position: top;
-      border: 1px solid var(--line);
-      border-radius: 8px;
-      background: var(--paper);
-    }
+    .chip.strong { border-color: var(--amber); color: var(--amber); font-weight: 700; }
+
     .callout {
-      background: var(--paper);
-      border-left: 3px solid var(--amber);
-      padding: 10px 12px;
-      margin: 10px 0 14px;
-      font-size: 10.5pt;
+      background: var(--surface);
+      border-left: 4px solid var(--amber);
+      padding: 12px 14px;
+      margin-top: 12px;
+      font-size: 15px;
     }
-    .label {
+    .callout .label {
       display: block;
-      font-size: 8pt;
-      letter-spacing: 0.12em;
+      font-size: 11px;
+      letter-spacing: 0.14em;
       text-transform: uppercase;
       color: var(--amber);
       margin-bottom: 4px;
+      font-weight: 700;
     }
-    .links {
-      font-size: 9.5pt;
-      color: var(--mute);
-      margin-top: 10px;
+
+    .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 12px; }
+    .grid-3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 12px; margin-top: 12px; }
+    .grid-4 { display: grid; grid-template-columns: 1fr 1fr 1fr 1fr; gap: 10px; margin-top: 12px; }
+    .panel {
+      background: var(--surface);
+      border: 1px solid var(--line);
+      padding: 12px 14px;
     }
-    .two-col {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 12px 18px;
+    .panel .goal-title { font-weight: 700; font-size: 15px; margin-bottom: 6px; color: var(--amber); }
+    .panel p, .panel li { font-size: 13.5px; }
+
+    .toc-list { display: grid; grid-template-columns: 1fr 1fr; gap: 10px 28px; margin-top: 16px; }
+    .toc-list div {
+      display: flex; justify-content: space-between; align-items: baseline;
+      border-bottom: 1px solid var(--line); padding: 8px 0; font-size: 16px;
     }
-    @media print {
-      .cover { min-height: auto; height: 250mm; }
+    .toc-list span { color: var(--mute); font-size: 13px; letter-spacing: 0.06em; }
+
+    table { width: 100%; border-collapse: collapse; font-size: 13.5px; margin-top: 10px; }
+    th, td { border: 1px solid var(--line); padding: 7px 9px; text-align: left; vertical-align: top; }
+    th { background: var(--surface); font-weight: 700; }
+
+    .flow {
+      display: flex; flex-direction: column; align-items: stretch; gap: 6px;
+      margin-top: 8px; font-size: 14px;
     }
+    .flow-step {
+      background: var(--surface); border: 1px solid var(--line);
+      padding: 8px 12px; text-align: center;
+    }
+    .flow-step span { display: block; color: var(--mute); font-size: 12px; margin-top: 2px; }
+    .flow-arrow { text-align: center; color: var(--amber); font-weight: 700; line-height: 1; }
+    .flow-branch, .flow-actions {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 8px;
+    }
+    .flow-branch { grid-template-columns: 1fr 1fr; }
+    .flow-actions { grid-template-columns: 1fr 1fr 1fr; }
+    .flow-branch-label {
+      display: inline-block !important; color: var(--amber) !important;
+      font-size: 11px !important; font-weight: 700; letter-spacing: 0.08em;
+      margin-bottom: 2px;
+    }
+
+    .phones {
+      display: grid; gap: 14px; margin-top: 10px; align-items: end; justify-items: center;
+    }
+    .phones.cols-2 { grid-template-columns: 1fr 1fr; }
+    .phones.cols-3 { grid-template-columns: 1fr 1fr 1fr; }
+    .phones figure { margin: 0; text-align: center; }
+    .phones img {
+      height: 118mm; width: auto; max-width: 100%;
+      object-fit: contain; border-radius: 14px;
+      border: 1px solid var(--line);
+      background: #fff;
+      box-shadow: 0 10px 28px rgba(20,21,26,0.12);
+    }
+    .phones.cols-3 img { height: 108mm; }
+    .phones figcaption { margin-top: 6px; font-size: 12px; color: var(--mute); }
+
+    .wide-shot { margin-top: 10px; text-align: center; }
+    .wide-shot img {
+      max-height: 105mm; max-width: 100%;
+      object-fit: contain; border: 1px solid var(--line);
+      border-radius: 8px; background: #fff;
+    }
+    .wide-shot figcaption { margin-top: 6px; font-size: 12px; color: var(--mute); }
+
+    .issue {
+      border: 1px solid var(--line);
+      border-left: 4px solid var(--amber);
+      background: var(--surface);
+      padding: 10px 12px;
+      margin-top: 8px;
+    }
+    .issue.warn { border-left-color: var(--warn); }
+    .issue.ok { border-left-color: var(--ok); }
+    .issue .head { display: flex; gap: 10px; align-items: baseline; margin-bottom: 4px; }
+    .issue .num {
+      font-weight: 700; color: var(--amber); font-size: 13px; letter-spacing: 0.06em;
+    }
+    .issue.warn .num { color: var(--warn); }
+    .issue.ok .num { color: var(--ok); }
+    .issue h3 { font-size: 15px; margin: 0; }
+    .issue p { font-size: 13.5px; }
+
+    .insights { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 10px; }
+    .insight {
+      background: var(--surface); border: 1px solid var(--line); padding: 12px 14px;
+    }
+    .insight-num { display: block; color: var(--amber); font-weight: 700; font-size: 12px; margin-bottom: 4px; }
+    .insight p { font-size: 14px; }
+
+    .cover-split {
+      display: grid; grid-template-columns: 1.15fr 0.85fr; gap: 18px;
+      flex: 1; min-height: 0; align-items: center;
+    }
+    .cover-phones {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 12px; align-items: end;
+    }
+    .cover-phones img {
+      width: 100%; height: auto; max-height: 130mm;
+      object-fit: contain; border-radius: 16px;
+      border: 1px solid var(--line); background: #fff;
+      box-shadow: 0 12px 30px rgba(20,21,26,0.14);
+    }
+    .footer-bar {
+      display: flex; justify-content: space-between; gap: 12px;
+      margin-top: auto; padding-top: 10px;
+      border-top: 1px solid var(--line);
+      font-size: 12px; color: var(--mute);
+    }
+    .cred {
+      display: inline-block; padding: 6px 12px;
+      background: #fff; border: 1px dashed var(--amber);
+      font-family: ui-monospace, Menlo, Consolas, monospace;
+      font-size: 14px; margin: 8px 0;
+    }
+    .two-col-body {
+      display: grid; grid-template-columns: 1.05fr 0.95fr; gap: 16px;
+      flex: 1; min-height: 0;
+    }
+    .section-divider {
+      justify-content: center; align-items: center; text-align: center;
+      background: linear-gradient(135deg, #e8eaee 0%, #f7f8fa 50%, #efe6df 100%);
+    }
+    .section-divider h1 { font-size: 48px; margin-bottom: 12px; }
+    .section-divider .lead { margin: 0 auto; }
   </style>
 </head>
 <body>
-  <section class="cover">
+
+<!-- ========== HOME ========== -->
+<section class="slide" data-folio="01">
+  <div class="slide-inner">
+
+  <div class="cover-split grow">
     <div>
       <p class="eyebrow">Portfolio · Product / Research / Ops</p>
       <h1>黄子骜 · Ziao Huang</h1>
       <p class="lead">
         宁波诺丁汉大学 · 大四 · 数学与应用数学。
         实习偏向用户研究、策略运营、数据分析、商业分析、产品运营等岗位。
-        两个作品都来自真实生活问题：多人吃饭难决定、家里东西找不到或过期——
-        做成可在线打开的产品，并写下从需求到方案、测试与落地的复盘。
+        下面两个作品都来自真实生活里遇到的问题：多人吃饭难决定、家里东西找不到或过期。
+        我把它们做成可在线打开的产品，并写下从需求到方案、测试与落地的完整复盘。
       </p>
-      <dl class="meta">
-        <div>
-          <dt>邮箱</dt>
-          <dd>zaozhi030108@outlook.com</dd>
-        </div>
-        <div>
-          <dt>作品集网站</dt>
-          <dd><a href="https://ziao-huang-0108.github.io/ziao-huang.github.io/">GitHub Pages</a></dd>
-        </div>
-        <div>
-          <dt>Case 1</dt>
-          <dd>今天吃什么 · 多人用餐决策</dd>
-        </div>
-        <div>
-          <dt>Case 2</dt>
-          <dd>Remember Me · 家庭物品本子</dd>
-        </div>
-      </dl>
-      <div class="phones">
-        <figure>
-          <img src="assets/hero/eatwhat.jpg" alt="今天吃什么" />
-          <figcaption>今天吃什么</figcaption>
-        </figure>
-        <figure>
-          <img src="assets/hero/remember-me.jpg" alt="Remember Me" />
-          <figcaption>Remember Me</figcaption>
-        </figure>
+      <div class="meta-row">
+        <span class="chip strong">邮箱 zaozhi030108@outlook.com</span>
+        <span class="chip">GitHub Pages 托管</span>
       </div>
+      <p class="mute" style="margin-top:14px;font-size:13px">
+        在线作品集：https://ziao-huang-0108.github.io/ziao-huang.github.io/
+      </p>
     </div>
-    <div class="footer-line">
-      <span>在线完整版以 GitHub Pages 为准</span>
-      <span>https://ziao-huang-0108.github.io/ziao-huang.github.io/</span>
+    <div class="cover-phones">
+      <img src="assets/hero/eatwhat.jpg" alt="今天吃什么" />
+      <img src="assets/hero/remember-me.jpg" alt="Remember Me" />
     </div>
-  </section>
+  </div>
 
-  <section class="case">
-    <p class="eyebrow">Case 01 · Product Design · 2026.9</p>
-    <h2>今天吃什么</h2>
-    <p>
-      从多人用餐决策痛点出发：不是选出「最好吃」的店，而是协调多方需求，
-      快速给出一个大家都能接受的答案。定位为平台可增加的<strong>决策能力层</strong>——
-      免登录、点开即用；推荐机制更重，因此做了更多结构化测试。
+  </div>
+</section>
+
+<section class="slide" data-folio="02">
+  <div class="slide-inner">
+
+  <p class="eyebrow">Home · Projects</p>
+  <h2>两个项目</h2>
+  <div class="grid-2 grow">
+    <div class="panel" style="padding:18px">
+      <p class="mute" style="font-size:12px;margin-bottom:6px">免登录 · 点开即用</p>
+      <h3 style="font-size:22px;margin:0 0 10px">今天吃什么</h3>
+      <p class="body">
+        多人用餐决策助手。免登录、点开即用。
+        更接近美团 / 大众点评可增加的一层「决策能力」——平台已有餐厅库，缺的是多人需求协调。
+        推荐机制更重，因此做了更多结构化测试。
+      </p>
+      <p class="mute" style="margin-top:12px;font-size:13px">
+        Demo：https://eatwhat-d8g01gpqk878dd6ed-1324990131.tcloudbaseapp.com
+      </p>
+    </div>
+    <div class="panel" style="padding:18px">
+      <p class="mute" style="font-size:12px;margin-bottom:6px">需登录 · 独立 App 雏形</p>
+      <h3 style="font-size:22px;margin:0 0 10px">Remember Me</h3>
+      <p class="body">
+        全家共用的物品小本子：放哪、何时过期、还剩什么。
+        管理家庭私域信息，需要登录；更像一个独立 App 的雏形。
+        迭代主要来自自用观察，并沉淀了开发日志工作流。
+      </p>
+      <p class="cred">体验账号 test1 / Abcd1234</p>
+      <p class="mute" style="font-size:13px">
+        Demo：https://remember-me-remember-me-d1gmd5iiu9d88c58a.webapps.tcloudbase.com
+      </p>
+      <p class="mute" style="margin-top:8px;font-size:12px">请用系统浏览器打开完整链接；默认域名可能有风险提示。</p>
+    </div>
+  </div>
+
+  </div>
+</section>
+
+<section class="slide" data-folio="03">
+  <div class="slide-inner">
+
+  <p class="eyebrow">Home · About</p>
+  <h2>关于我</h2>
+  <div class="grow" style="display:flex;flex-direction:column;justify-content:center;max-width:48em">
+    <p class="lead" style="font-size:20px;margin-bottom:18px">
+      大四在读，数学与应用数学背景；做过用户调研、活动组织与 AI 产品原型。
+      希望在偏研究、策略与分析的岗位里，把定量思维和可验证的落地结合起来。
+    </p>
+    <p class="body" style="font-size:17px;margin-bottom:10px">
+      邮箱：<a href="mailto:zaozhi030108@outlook.com">zaozhi030108@outlook.com</a>
+    </p>
+    <p class="body" style="font-size:17px">
+      也写歌 · <a href="https://163cn.tv/bjSkQBzl">网易云歌手页</a>
+    </p>
+  </div>
+  <div class="footer-bar">
+    <span>© 黄子骜 · Ziao Huang</span>
+    <span>托管于 GitHub Pages</span>
+  </div>
+
+  </div>
+</section>
+
+<!-- ========== EATWHAT DIVIDER ========== -->
+<section class="slide section-divider" data-folio="04">
+  <div class="slide-inner">
+
+  <p class="eyebrow">Case 01</p>
+  <h1>今天吃什么</h1>
+  <p class="lead">
+    从多人用餐决策痛点出发，探索推荐系统的产品设计与迭代——
+    不是选出「最好吃」的店，而是协调多方需求，快速给出一个大家都能接受的答案。
+  </p>
+  <div class="meta-row" style="justify-content:center;margin-top:20px">
+    <span class="chip strong">免登录 · 点开即用</span>
+    <span class="chip">产品设计 / 推荐逻辑</span>
+    <span class="chip">2026.9</span>
+    <span class="chip">Next.js · LocalStorage</span>
+  </div>
+
+  </div>
+</section>
+
+<section class="slide" data-folio="05">
+  <div class="slide-inner">
+
+  <p class="eyebrow">今天吃什么 · 目录</p>
+  <h2>目录</h2>
+  <div class="toc-list grow">
+    <div><strong>01 项目背景</strong><span>Problem</span></div>
+    <div><strong>02 产品目标与定位</strong><span>Goal</span></div>
+    <div><strong>03 产品方案</strong><span>Solution</span></div>
+    <div><strong>04 MVP 与体验路径</strong><span>Prototype</span></div>
+    <div><strong>05 测试与打脸</strong><span>Testing</span></div>
+    <div><strong>06 未来方向</strong><span>Future</span></div>
+    <div><strong>07 项目收获</strong><span>Reflection</span></div>
+    <div><strong>08 线上 Demo</strong><span>Try it</span></div>
+  </div>
+
+  </div>
+</section>
+
+<section class="slide" data-folio="06">
+  <div class="slide-inner">
+
+  <p class="eyebrow">01 · Problem</p>
+  <h2>项目背景：多人吃饭，为什么这么难？</h2>
+  <div class="grow">
+    <p class="body" style="margin-bottom:10px">
+      面对「吃什么」，很多人会说「随便」，把决定权交给别人，或只给出「不太能吃辣」之类的模糊范围。
+      多人一起时，需求还可能冲突；选得不好，做决定的人容易承担额外压力。
+    </p>
+    <p class="body" style="margin-bottom:10px">
+      美团、大众点评、小红书更擅长帮用户<strong>拿到餐厅列表</strong>。
+      用户仍要从大量候选里自行了解并做最终决定，也很难同时结合多人不同需求。
+      对选择困难的人来说，即使一个人吃饭也可能卡住。
     </p>
     <div class="callout">
       <span class="label">Core question</span>
       问题不是「找不到餐厅」，而是面对大量选择时，很难快速找到一个大家都能接受的答案。
+      当选择很多、需求又有差异时，如何帮助用户完成一次「可接受」的用餐决策？
     </div>
-    <h3>做了什么</h3>
-    <div class="two-col">
-      <ul>
-        <li>成员档案：偏好、忌口与历史反馈可组合</li>
-        <li>场景与距离等条件结构化进推荐</li>
-        <li>推荐可解释：展示依据与评分构成</li>
-      </ul>
-      <ul>
-        <li>反馈闭环：用餐后评分回写成员</li>
-        <li>MVP 路径：成员 → 场景 → 距离 → 结果 → 详情</li>
-        <li>结构化测试记录问题与迭代</li>
-      </ul>
-    </div>
-    <h3>界面摘录</h3>
-    <div class="shot-grid">
-      <img src="assets/eatwhat/01-members-phone.jpg" alt="成员" />
-      <img src="assets/eatwhat/02-scene-phone.jpg" alt="场景" />
-      <img src="assets/eatwhat/04-result-phone.jpg" alt="结果" />
-    </div>
-    <p class="links">
-      Case：https://ziao-huang-0108.github.io/ziao-huang.github.io/eatwhat.html<br />
-      Demo：https://eatwhat-d8g01gpqk878dd6ed-1324990131.tcloudbaseapp.com
-    </p>
-  </section>
+  </div>
 
-  <section class="case">
-    <p class="eyebrow">Case 02 · Product Design · 2026.10</p>
-    <h2>Remember Me</h2>
-    <p>
-      全家共用的物品小本子：什么时候买了什么、放在哪、还有多久过期。
-      管的是家里的私密信息，因此需要登录；形态更接近<strong>独立 App 雏形</strong>。
-      迭代主要来自自用观察，并沉淀了「开发日志 → Skill」的过程方法。
+  </div>
+</section>
+
+<section class="slide" data-folio="07">
+  <div class="slide-inner">
+
+  <p class="eyebrow">02 · Goal</p>
+  <h2>产品目标与定位</h2>
+  <p class="body">把「找餐厅」升级为「帮用户做决定」，验证四个方向：</p>
+  <div class="grid-4">
+    <div class="panel"><div class="goal-title">个性化 · 成员档案</div><p>多成员偏好、忌口与历史反馈可组合进一次推荐。</p></div>
+    <div class="panel"><div class="goal-title">需求理解</div><p>把偏好与忌口变成可用于推荐的结构化条件。</p></div>
+    <div class="panel"><div class="goal-title">推荐可解释</div><p>展示推荐依据与评分构成，让用户知道「为什么是这家」。</p></div>
+    <div class="panel"><div class="goal-title">反馈闭环</div><p>用餐后评分回写到具体成员，影响后续推荐。</p></div>
+  </div>
+  <div class="callout grow" style="margin-top:auto">
+    <span class="label">Positioning</span>
+    核心目标不是预测「用户最喜欢哪一家」，而是在多人、多种需求下做优先级排序与协调，快速给出可接受结果。
+    相对美团 / 点评：它们已有真实餐厅数据库；本项目更接近平台可增加的一层<strong>决策 / 推荐能力</strong>，而不是从零搭一套餐饮 App。
+    产品做成<strong>免登录、点开即用</strong>，降低试用成本，也符合「能力层」该有的轻入口。
+  </div>
+
+  </div>
+</section>
+
+<section class="slide" data-folio="08">
+  <div class="slide-inner">
+
+  <p class="eyebrow">03 · Solution · Flow</p>
+  <h2>产品方案：逻辑一览</h2>
+  <p class="mute" style="margin-bottom:6px">从勾选成员到推荐，再到打分回写。</p>
+  <div class="flow grow" style="max-width:720px;margin-left:auto;margin-right:auto">
+    <div class="flow-step">选成员 + 场景 / 距离<span>合并偏好、忌口与历史评分</span></div>
+    <div class="flow-arrow">↓</div>
+    <div class="flow-step">硬过滤<span>忌口命中即淘汰；距离无结果则放宽</span></div>
+    <div class="flow-arrow">↓</div>
+    <div class="flow-step">排除历史差评<span>任一成员 1–2 星 → 不进排序池</span></div>
+    <div class="flow-arrow">↓</div>
+    <div class="flow-step">偏好软门控<span>尽量满足本次想吃什么，但不一票否决</span></div>
+    <div class="flow-arrow">↓</div>
+    <div class="flow-branch">
+      <div class="flow-step"><span class="flow-branch-label">有命中</span>只在偏好子集内排序</div>
+      <div class="flow-step"><span class="flow-branch-label">无命中</span>退回全候选再排序</div>
+    </div>
+    <div class="flow-arrow">↓</div>
+    <div class="flow-step">可解释结果 → 打分反馈<span>评分写入对应成员记忆，供下次推荐</span></div>
+  </div>
+
+  </div>
+</section>
+
+<section class="slide" data-folio="09">
+  <div class="slide-inner">
+
+  <p class="eyebrow">03 · Solution · Design</p>
+  <h2>可组合档案 · 硬约束 vs 软偏好</h2>
+  <div class="grow">
+    <h3>3.1 可组合的成员档案</h3>
+    <p class="body">
+      吃饭天然多人，因此没有做成单一用户画像，而是可组合的成员档案：
+      同一个人跟不同的人吃饭，参与决策的需求组合也不同。每次勾选实际成员，合并偏好、忌口与历史评分后再进入推荐。
     </p>
+    <h3>3.2 硬约束 vs 软偏好</h3>
+    <p class="body">
+      <strong>硬约束</strong>（如过敏、最大距离）不能违反；
+      <strong>软偏好</strong>（如「想吃火锅」）尽量满足，但不意味着其他类型绝对不能推。
+    </p>
+    <h3>3.3 三层优先级（不全混在一个加减分里）</h3>
+    <table>
+      <thead><tr><th>因素</th><th>层级</th><th>行为</th></tr></thead>
+      <tbody>
+        <tr><td>忌口 / 过敏</td><td>硬约束</td><td>命中即淘汰</td></tr>
+        <tr><td>最大距离</td><td>硬约束（可放宽）</td><td>先按范围过滤；空则放宽</td></tr>
+        <tr><td>历史 1–2 星</td><td>排除</td><td>任一成员差评 → 不进排序池</td></tr>
+        <tr><td>饮食偏好</td><td>软门控</td><td>有命中 → 子集排序；无命中 → 退回全候选</td></tr>
+        <tr><td>场景 / 星级 / 历史好评</td><td>评分</td><td>在候选池内打分；同分随机</td></tr>
+        <tr><td>用餐人数</td><td>仅展示</td><td>不参与硬淘汰（测试后调整）</td></tr>
+      </tbody>
+    </table>
+    <p class="body" style="margin-top:10px">
+      推荐机制比「记一张清单」更重：召回与排序必须对齐目标，否则链路会整体失效——这也是后面要做更多测试的原因。
+    </p>
+  </div>
+
+  </div>
+</section>
+
+<section class="slide" data-folio="10">
+  <div class="slide-inner">
+
+  <p class="eyebrow">04 · MVP</p>
+  <h2>MVP：三步向导，免登录即用</h2>
+  <p class="body" style="margin-bottom:8px">
+    选择用餐成员 → 设置场景与人数 → 设置最大距离 → 生成推荐；结果页可再抽一次、打分，并可展开看计算过程。
+  </p>
+  <div class="phones cols-3 grow">
+    <figure>
+      <img src="assets/eatwhat/01-members-phone.jpg" alt="成员" />
+      <figcaption>选择用餐人档案（偏好与忌口）</figcaption>
+    </figure>
+    <figure>
+      <img src="assets/eatwhat/02-scene-phone.jpg" alt="场景" />
+      <figcaption>设置用餐场景与人数</figcaption>
+    </figure>
+    <figure>
+      <img src="assets/eatwhat/03-distance-phone.jpg" alt="距离" />
+      <figcaption>设置最大距离</figcaption>
+    </figure>
+  </div>
+
+  </div>
+</section>
+
+<section class="slide" data-folio="11">
+  <div class="slide-inner">
+
+  <p class="eyebrow">04 · MVP · Results</p>
+  <h2>推荐结果 · 可解释明细 · 操作</h2>
+  <div class="phones cols-3 grow">
+    <figure>
+      <img src="assets/eatwhat/04-result-phone.jpg" alt="结果" />
+      <figcaption>推荐结果与理由</figcaption>
+    </figure>
+    <figure>
+      <img src="assets/eatwhat/05-detail-phone.jpg" alt="明细" />
+      <figcaption>可解释的评分明细</figcaption>
+    </figure>
+    <figure>
+      <img src="assets/eatwhat/06-actions.png" alt="操作" />
+      <figcaption>打分、再抽一次、立即出发；可展开计算详情</figcaption>
+    </figure>
+  </div>
+
+  </div>
+</section>
+
+<section class="slide" data-folio="12">
+  <div class="slide-inner">
+
+  <p class="eyebrow">04 · MVP · Debug</p>
+  <h2>Debug / 测试记录面板</h2>
+  <p class="body">还原「为什么推这家」（电脑端截图，便于完整展示面板）。</p>
+  <figure class="wide-shot grow">
+    <img src="assets/eatwhat/06-debug.png" alt="Debug 面板" />
+    <figcaption>Usage Log / Debug：让异常结果可复盘</figcaption>
+  </figure>
+
+  </div>
+</section>
+
+<section class="slide" data-folio="13">
+  <div class="slide-inner">
+
+  <p class="eyebrow">05 · Testing · 01–03</p>
+  <h2>测试与打脸：假设要被结果纠正</h2>
+  <p class="body" style="margin-bottom:6px">
+    推荐链路一复杂，就不能只靠直觉认功能「合理」。我用构造场景做了多轮测试，并补上 Usage Log / Debug，让异常结果可复盘。
+  </p>
+  <div class="issue">
+    <div class="head"><span class="num">01</span><h3>用餐人数不应成为硬限制</h3></div>
+    <p>「一人食 + 想吃火锅」时，火锅店因适用人数不含 1 人被直接滤掉。调整：人数改为参考信息，不再硬淘汰。</p>
+  </div>
+  <div class="issue">
+    <div class="head"><span class="num">02</span><h3>看起来周全的输入可能完全没用</h3></div>
+    <p>「交通方式」改了，推荐却不变——字段没进逻辑。调整：删掉该输入。只有能改变决策结果的变量，才值得增加输入成本。</p>
+  </div>
+  <div class="issue">
+    <div class="head"><span class="num">03</span><h3>记忆数据到底属于谁</h3></div>
+    <p>成员 A 的五星评分影响了只选成员 B 的推荐。根因是历史记忆按浏览器全局存，没绑到档案。调整：评分严格归属成员。这是产品数据建模问题，不只是存储 Bug。</p>
+  </div>
+
+  </div>
+</section>
+
+<section class="slide" data-folio="14">
+  <div class="slide-inner">
+
+  <p class="eyebrow">05 · Testing · 04–05</p>
+  <h2>测试与打脸（续）</h2>
+  <div class="issue warn">
+    <div class="head"><span class="num">04</span><h3>当下需求应优先于历史偏好</h3></div>
+    <p>同时有人历史爱泰国菜、有人当前想火锅时，系统先推了泰国菜。调整：降低历史权重，把本次偏好前置到召回。过去喜欢什么，不能盖住这次想吃什么。</p>
+  </div>
+  <div class="issue ok">
+    <div class="head"><span class="num">05</span><h3>召回对了，排序目标仍可能错位</h3></div>
+    <p>
+      第二轮构造多人冲突场景：火锅进了候选池，但最终排序仍被其他类型压过——偏好只缩了候选，池内打分未体现群体偏好满足度。
+      启示：推荐要同时做好「哪些店能进来」和「进来后优先推谁」，两者目标不一致，整条链路会失效。
+    </p>
+  </div>
+  <div class="callout">
+    <span class="label">Why more testing here</span>
+    相对 Remember Me，本项目的逻辑中心是推荐机制，错误更隐蔽，所以测试密度更高：人工场景 → 可观测日志 → 冲突场景复盘。
+    做下来最深的体会是：要用结果打脸假设，而不是把「功能做完」当成验证完成。
+  </div>
+
+  </div>
+</section>
+
+<section class="slide" data-folio="15">
+  <div class="slide-inner">
+
+  <p class="eyebrow">06 · Future</p>
+  <h2>未来优化方向</h2>
+  <div class="grid-3 grow">
+    <div class="panel">
+      <div class="goal-title">真实位置</div>
+      <ul>
+        <li><strong>当前</strong>用预设 / 模拟距离做硬过滤，距离是「离我多远」的单点近似。</li>
+        <li><strong>局限</strong>多人吃饭时，真正的问题往往是「对大家都方不方便」，不是只服务某一个人的坐标。</li>
+        <li><strong>未来</strong>接入地图 / 定位，收集多成员位置，优先推对全体出行更友好的中间地带餐厅。</li>
+      </ul>
+    </div>
+    <div class="panel">
+      <div class="goal-title">菜品级匹配</div>
+      <ul>
+        <li><strong>当前</strong>推荐对象停在餐厅：类型、场景、忌口都按店级标签处理。</li>
+        <li><strong>局限</strong>店适合某人，不等于每道菜都适合；海鲜过敏仍可能在店里吃到安全选项。</li>
+        <li><strong>未来</strong>接入菜单信息，按菜品考虑过敏、饮食限制与营养，形成「餐厅 → 菜品 → 成员」匹配。</li>
+      </ul>
+    </div>
+    <div class="panel">
+      <div class="goal-title">群体满意度</div>
+      <ul>
+        <li><strong>当前</strong>主要按单店综合适配度排序；偏好更多影响「谁能进池」。</li>
+        <li><strong>局限</strong>多人偏好都进了候选，最终仍可能更偏向其中一人，群体满足度不显式。</li>
+        <li><strong>未来</strong>把「满足了多少人的核心需求、有没有人完全吃不了」写进排序，并支持分成员反馈。</li>
+      </ul>
+    </div>
+  </div>
+
+  </div>
+</section>
+
+<section class="slide" data-folio="16">
+  <div class="slide-inner">
+
+  <p class="eyebrow">07 · Reflection</p>
+  <h2>项目收获</h2>
+  <div class="insights grow">
+    <article class="insight"><span class="insight-num">01</span><p>现实里合理的因素（人数、交通），放进产品不一定该做约束；要用测试验证。</p></article>
+    <article class="insight"><span class="insight-num">02</span><p>推荐不只是算分：数据归属、需求优先级、可解释性、召回与排序对齐，都是产品设计。</p></article>
+    <article class="insight"><span class="insight-num">03</span><p>功能跑通 ≠ 产品闭环；核心操作在真实页面上必须可点（结果页滚动曾挡住按钮）。</p></article>
+    <article class="insight"><span class="insight-num">04</span><p>整理本项目复盘时大量翻聊天记录，成本很高——这也直接推动了下一个项目从第一天就写开发日志。</p></article>
+  </div>
+  <p class="callout" style="margin-top:12px">
+    一个功能看起来合理，并不代表它真的有用。只有通过使用、观察结果、再改产品，才能知道最初的想法是否成立。
+  </p>
+
+  </div>
+</section>
+
+<section class="slide" data-folio="17">
+  <div class="slide-inner">
+
+  <p class="eyebrow">08 · Demo</p>
+  <h2>线上体验 · 今天吃什么</h2>
+  <div class="grow" style="display:flex;flex-direction:column;justify-content:center;max-width:42em">
+    <p class="lead" style="margin-bottom:16px">已部署到 CloudBase 静态托管。免登录，点开即可走完推荐流程。</p>
+    <p class="body" style="font-size:16px;word-break:break-all">
+      https://eatwhat-d8g01gpqk878dd6ed-1324990131.tcloudbaseapp.com
+    </p>
+  </div>
+
+  </div>
+</section>
+
+<!-- ========== REMEMBER ME ========== -->
+<section class="slide section-divider" data-folio="18">
+  <div class="slide-inner">
+
+  <p class="eyebrow">Case 02</p>
+  <h1>Remember Me</h1>
+  <p class="lead">
+    全家一起用的物品小本子：什么时候买了什么、放在哪、还有多久过期，一眼能看到。
+    管的是家里的私密信息，因此需要登录；形态上更接近一个独立 App 的雏形，而不是某个已有平台上的插件功能。
+  </p>
+  <div class="meta-row" style="justify-content:center;margin-top:20px">
+    <span class="chip strong">需登录 · 独立 App 雏形</span>
+    <span class="chip">产品设计 / 落地与迭代</span>
+    <span class="chip">2026.10</span>
+    <span class="chip">PWA · CloudBase · PostgreSQL</span>
+  </div>
+
+  </div>
+</section>
+
+<section class="slide" data-folio="19">
+  <div class="slide-inner">
+
+  <p class="eyebrow">Remember Me · 目录</p>
+  <h2>目录</h2>
+  <div class="toc-list grow">
+    <div><strong>01 项目背景</strong><span>Problem</span></div>
+    <div><strong>02 产品目标与定位</strong><span>Goal</span></div>
+    <div><strong>03 产品方案</strong><span>Solution</span></div>
+    <div><strong>04 迭代与洞察</strong><span>Iteration</span></div>
+    <div><strong>05 过程方法</strong><span>Method</span></div>
+    <div><strong>06 未来方向</strong><span>Future</span></div>
+    <div><strong>07 项目收获</strong><span>Reflection</span></div>
+    <div><strong>08 线上 Demo</strong><span>Try it</span></div>
+  </div>
+
+  </div>
+</section>
+
+<section class="slide" data-folio="20">
+  <div class="slide-inner">
+
+  <p class="eyebrow">01 · Problem</p>
+  <h2>项目背景：家里的东西，为什么总对不上？</h2>
+  <div class="grow">
+    <p class="body" style="margin-bottom:10px">家里东西越买越多，常见几种遇到的情况：</p>
+    <ul class="body" style="font-size:16px;margin-bottom:14px">
+      <li><strong>忘了放在哪</strong>：钥匙、首饰、衣物等，要用时翻遍柜子。</li>
+      <li><strong>过期了才发现</strong>：药品、调料、护肤品、零食等放着放着只能扔掉。</li>
+      <li><strong>重复购买</strong>：不知道还有存货，又买了一份。</li>
+      <li><strong>信息不共享</strong>：某一个人购买、存放的，其他家人不知道。</li>
+    </ul>
     <div class="callout">
       <span class="label">Core question</span>
-      如何让一家人共用同一份物品本子，又能把家庭私密信息关在可控访问范围里？
+      如何让一家人用同一份「物品小本子」，在需要时快速知道东西在哪、急不急处理，
+      同时又把家庭私密信息关在可控制的访问范围里？
     </div>
-    <h3>做了什么</h3>
-    <div class="two-col">
-      <ul>
-        <li>登录与家庭私域数据</li>
-        <li>物品列表、位置与过期色标</li>
-        <li>从自用到可分享的体验账号</li>
-      </ul>
-      <ul>
-        <li>PWA + CloudBase + PostgreSQL 落地</li>
-        <li>上线约束与域名风控的真实取舍</li>
-        <li>开发日志沉淀为可复用 Skill</li>
-      </ul>
+  </div>
+
+  </div>
+</section>
+
+<section class="slide" data-folio="21">
+  <div class="slide-inner">
+
+  <p class="eyebrow">02 · Goal</p>
+  <h2>产品目标与定位</h2>
+  <p class="body">目标用户按角色拆开，避免做成「只有采购者爱用」的记事本：</p>
+  <table>
+    <thead><tr><th>角色</th><th>特点</th><th>主要需求</th></tr></thead>
+    <tbody>
+      <tr><td>采购者</td><td>会主动录入</td><td>录入要快，操作简单</td></tr>
+      <tr><td>使用者</td><td>很少录入，偶尔查找</td><td>能快速搜到东西在哪</td></tr>
+    </tbody>
+  </table>
+  <div class="callout grow" style="margin-top:auto">
+    <span class="label">Positioning</span>
+    相对「今天吃什么」：那个项目更像美团 / 大众点评等已有的平台可增加的决策能力层，而作为网页可以免登录点开即用。
+    Remember Me 要管的是家里私人物品与过期信息，需要家庭成员身份与家庭边界，因此更像<strong>独立 App 的雏形</strong>：
+    登录、家庭空间、云端同步、过期行动提示，都是产品本身，而不是外挂功能。
+  </div>
+
+  </div>
+</section>
+
+<section class="slide" data-folio="22">
+  <div class="slide-inner">
+
+  <p class="eyebrow">03 · Solution · Flow</p>
+  <h2>产品方案：逻辑一览</h2>
+  <p class="mute" style="margin-bottom:6px">按打开页面的先后顺序：先进门（登录）→ 再记什么 → 过期颜色怎么读 → 怎么找、怎么切换家。</p>
+  <div class="flow grow" style="max-width:760px;margin-left:auto;margin-right:auto">
+    <div class="flow-step">打开链接 → 登录<span>用户名 + 密码；账号由我开通</span></div>
+    <div class="flow-arrow">↓</div>
+    <div class="flow-branch">
+      <div class="flow-step"><span class="flow-branch-label">只有一家</span>直接进入该家清单</div>
+      <div class="flow-step"><span class="flow-branch-label">有多家</span>先选家 / 建家 / 邀请码加入</div>
     </div>
-    <h3>界面摘录</h3>
-    <div class="shot-grid">
-      <img src="assets/remember-me/03-login.png" alt="登录" />
-      <img src="assets/remember-me/05-items-colored.png" alt="物品列表" />
-      <img src="assets/remember-me/05-expiry-colors.png" alt="过期色标" />
+    <div class="flow-arrow">↓</div>
+    <div class="flow-step">清单按过期紧急度着色排序<span>打开时用过期日减今天现算，最急的在前</span></div>
+    <div class="flow-arrow">↓</div>
+    <div class="flow-actions">
+      <div class="flow-step">记一件</div>
+      <div class="flow-step">搜索 / 过期·类别筛选</div>
+      <div class="flow-step">切换家 / 新建家</div>
     </div>
-    <p class="links">
-      Case：https://ziao-huang-0108.github.io/ziao-huang.github.io/remember-me.html<br />
-      Demo：https://remember-me-remember-me-d1gmd5iiu9d88c58a.webapps.tcloudbase.com<br />
-      体验账号：test1 / Abcd1234
+  </div>
+
+  </div>
+</section>
+
+<section class="slide" data-folio="23">
+  <div class="slide-inner">
+
+  <p class="eyebrow">03 · Solution · Access</p>
+  <h2>3.1 访问与形态：为什么要登录</h2>
+  <p class="body" style="margin-bottom:10px">
+    「今天吃什么」可以免登录，因为试用成本低、数据敏感度相对较低。
+    Remember Me 记录的是药品位置、家用存货等<strong>家庭私域信息</strong>，不能做成谁打开都能看的公开页，所以必须登录。
+  </p>
+  <div class="two-col-body grow">
+    <div>
+      <div class="grid-2" style="grid-template-columns:1fr;gap:10px">
+        <div class="panel">
+          <div class="goal-title">当前访问策略</div>
+          <p>为了安全性和稳定性，不开放网页自助注册。账号只在我这边开通：只有我配置过的账户+密码可以进入。这是家庭小范围试用阶段的取舍，并非漏做注册。</p>
+        </div>
+        <div class="panel">
+          <div class="goal-title">形态选择</div>
+          <p>手机网页（PWA）+ CloudBase：不用上架审核，一个链接就能分享；可添加到主屏幕。后端用腾讯云 PostgreSQL，国内访问更稳。</p>
+        </div>
+      </div>
+      <p class="body" style="margin-top:10px">给面试官 / 同学试用，我专门开了体验账号（非正式家人账号）：</p>
+      <p class="cred">用户名 test1 · 密码 Abcd1234</p>
+    </div>
+    <div class="phones cols-2" style="margin-top:0">
+      <figure>
+        <img src="assets/remember-me/03-login.png" alt="登录" style="height:100mm" />
+        <figcaption>登录页：用户名 + 密码</figcaption>
+      </figure>
+      <figure>
+        <img src="assets/remember-me/04-pick-home.png" alt="选家" style="height:100mm" />
+        <figcaption>选家页：多家时先进哪一家</figcaption>
+      </figure>
+    </div>
+  </div>
+
+  </div>
+</section>
+
+<section class="slide" data-folio="24">
+  <div class="slide-inner">
+
+  <p class="eyebrow">03 · Solution · Fields & Color</p>
+  <h2>3.2 记什么 · 3.3 过期颜色</h2>
+  <div class="two-col-body grow">
+    <div>
+      <h3 style="margin-top:0">字段为行动服务</h3>
+      <p class="body">
+        每件物品记录名称、价格、功能/用途、购买日期、过期日期、放置位置、备注、照片与类别。
+        清单默认按「谁最先过期」排在前面——核心问题是「什么该先处理」，不是「最近买了什么」。
+      </p>
+      <h3>过期颜色：一眼能懂的信号</h3>
+      <table>
+        <thead><tr><th>剩余天数 d</th><th>颜色</th><th>行动含义</th></tr></thead>
+        <tbody>
+          <tr><td>d ≤ 30</td><td>红</td><td>马上处理</td></tr>
+          <tr><td>30 &lt; d &lt; 180</td><td>橙</td><td>近期留意</td></tr>
+          <tr><td>180 ≤ d &lt; 365</td><td>黄</td><td>心里有数</td></tr>
+          <tr><td>d ≥ 365</td><td>绿</td><td>不用操心</td></tr>
+          <tr><td>已过期</td><td>深红 + 过期天数</td><td>单独一档，优先处理</td></tr>
+        </tbody>
+      </table>
+      <p class="body" style="margin-top:8px;font-size:13px">
+        同一档内越接近过期颜色越深。剩余天数不靠定时任务「每天刷新」，而是打开时用过期日减今天现算，数字永远跟日历走。
+      </p>
+    </div>
+    <div class="phones cols-2" style="margin-top:0">
+      <figure>
+        <img src="assets/remember-me/05-items-colored.png" alt="清单着色" style="height:105mm" />
+        <figcaption>清单：深红 / 红 / 橙 / 黄</figcaption>
+      </figure>
+      <figure>
+        <img src="assets/remember-me/05-expiry-colors.png" alt="图例" style="height:105mm" />
+        <figcaption>下拉图例：颜色 = 紧急程度</figcaption>
+      </figure>
+    </div>
+  </div>
+
+  </div>
+</section>
+
+<section class="slide" data-folio="25">
+  <div class="slide-inner">
+
+  <p class="eyebrow">03 · Solution · Find & Home</p>
+  <h2>3.4 查找与家庭</h2>
+  <div class="two-col-body grow">
+    <div style="display:flex;flex-direction:column;justify-content:center">
+      <p class="lead" style="font-size:18px">
+        支持按过期情况、类别筛选，以及按名称 / 位置 / 备注关键词搜索。
+        一人可加入多个家庭并切换——对应「以后住别处仍要看旧家物品」的真实场景。
+      </p>
+    </div>
+    <div class="phones cols-2" style="margin-top:0;justify-items:center">
+      <figure>
+        <img src="assets/remember-me/02-list.png" alt="清单顶栏" style="height:120mm" />
+        <figcaption>清单顶栏：搜索 + 过期颜色筛选 + 当前家切换</figcaption>
+      </figure>
+    </div>
+  </div>
+
+  </div>
+</section>
+
+<section class="slide" data-folio="26">
+  <div class="slide-inner">
+
+  <p class="eyebrow">04 · Iteration · 01–03</p>
+  <h2>迭代与洞察</h2>
+  <p class="body" style="margin-bottom:6px">
+    相对「今天吃什么」里更重的推荐测试，Remember Me 的迭代主要来自<strong>自己在使用中的观察和思考</strong>。
+    外部真实反馈目前明确可复述的只有一条。验证方式不同，不是偷懒，而是产品阶段与问题类型不同。
+  </p>
+  <div class="issue ok">
+    <div class="head"><span class="num">01</span><h3>定位转折：从「我一个人用」到「全家一起用」</h3></div>
+    <p>最早做成给自己用的管理个人物品的单机本子，数据只在本机。但生活在家庭中会用到很多家庭共用的物品，这些物品常常是一个人买、其他人找或者根本不知道这些物品的存在，直到过期了才被翻出来，造成了不必要的浪费。于是定位改成全家共用：字段、过期颜色、账号与家庭空间都按多人场景重定。</p>
+  </div>
+  <div class="issue ok">
+    <div class="head"><span class="num">02</span><h3>先把主路径做顺，再接云端</h3></div>
+    <p>登录和云端可以后接，但这个产品的核心功能————记录物品信息（功能、放置位置、什么时候过期）必须先顺。先在本地把录入和清单做清楚，再做家庭同步。保质期快捷按钮少让人自己换算日历；排序默认「谁先过期」，更好地起到提醒作用。</p>
+  </div>
+  <div class="issue warn">
+    <div class="head"><span class="num">03</span><h3>自用观察驱动改版</h3></div>
+    <p>自己试用觉得第一版页面设计太单调，删除和编辑的按键也不明显。于是加大触控区与类别标签，补上照片和排序筛选，让清单更一目了然、条目更好点击。界面放了家里柴犬小六的卡通形象，进门可播放我的歌《4am》（可静音），把「家庭」感做进进门体验；装饰不喧宾夺主。</p>
+  </div>
+
+  </div>
+</section>
+
+<section class="slide" data-folio="27">
+  <div class="slide-inner">
+
+  <p class="eyebrow">04 · Iteration · 04–05</p>
+  <h2>迭代与洞察（续）</h2>
+  <div class="issue">
+    <div class="head"><span class="num">04</span><h3>共享落地时的平台约束</h3></div>
+    <p>登录用用户名 + 密码，考虑到用户只有本家庭成员所以没必要接微信登录和短信。腾讯云不允许网页自助开号，就去掉注册入口，账号只在控制台开通。体验版只有 PostgreSQL，数据改走 SQL；前端从国内访问不稳定的 Vercel 迁到 CloudBase 静态托管，和后端同落腾讯云。</p>
+  </div>
+  <div class="issue ok">
+    <div class="head"><span class="num">05</span><h3>唯一外部交互反馈：按钮被挡住了</h3></div>
+    <p>一位家庭成员在手机上试，发现音乐控件挡住了「保存」，电脑宽屏上看不出来。把保存改到底部主按钮，音乐改成可拖、可贴边的小钮。功能步骤没变，真机可用性过关。这也提醒了我这个产品的使用设备是手机，所以我在进行页面设计的时候应该考虑的是手机用户的使用体验。</p>
+  </div>
+
+  </div>
+</section>
+
+<section class="slide" data-folio="28">
+  <div class="slide-inner">
+
+  <p class="eyebrow">04 · Iteration · 06–07</p>
+  <h2>迭代与洞察（续）</h2>
+  <div class="issue warn">
+    <div class="head"><span class="num">06</span><h3>自用提出：一家不够用，分类也不够找——多家切换 + 关键词搜索</h3></div>
+    <p>自用发现以后可能会到别的城市生活，新家和旧家物品需要查看；东西多了单靠过期 / 类别不好找。于是支持一人多家（多家时先选家，顶栏可切换），并加关键词搜索（可与原筛选叠加）。库表本来就允许多家，这次主要改前端认家逻辑，没有改表结构。</p>
+  </div>
+  <div class="issue warn">
+    <div class="head"><span class="num">07</span><h3>默认域名能开着开着变成下载——排查后改成诚实说明</h3></div>
+    <p>默认域名有时正常、有时出风险页、有时下载 index.html；电脑曾能开后一直下载，手机删快捷方式再输网址又恢复。是平台对未备案域名的策略，和打开方式、风险 Cookie 有关；经过尝试发现重传无效。短期解决方案是写清试用说明，根本解法是申请备案域名（目前正在申请中）。</p>
+  </div>
+
+  </div>
+</section>
+
+<section class="slide" data-folio="29">
+  <div class="slide-inner">
+
+  <p class="eyebrow">05 · Method</p>
+  <h2>过程方法：从翻聊天的痛苦，到开发日志 Skill</h2>
+  <div class="grow" style="display:flex;flex-direction:column;justify-content:center;max-width:50em">
+    <p class="lead" style="margin-bottom:14px">
+      整理第一个作品集（今天吃什么）时，我需要翻大量对话才能拼出「当时为什么这么做」，过程很痛苦，也容易漏掉决策理由。
     </p>
-    <div class="footer-line">
-      <span>© 黄子骜 · Ziao Huang</span>
-      <span>作品集仅托管于 GitHub Pages</span>
+    <p class="lead" style="margin-bottom:14px">
+      所以做 Remember Me 时，一开始就加了硬约束：每完成一步，就同时记录在开发日志中：做了什么、为什么、遇到什么问题、怎么解决、有没有反馈。
+      这份记录后来收成可复用的 Skill，让之后的项目默认带着「外人也能读懂」的过程资产，不需要事后再费力整理。
+    </p>
+    <div class="callout">
+      <span class="label">Why this matters</span>
+      「今天吃什么」让我确认：复杂推荐必须靠测试验证假设。
+      Remember Me 则是在家庭私域与平台约束里，把工具真正做成可上线的形态，并把复盘方法固定下来。
     </div>
-  </section>
+  </div>
+
+  </div>
+</section>
+
+<section class="slide" data-folio="30">
+  <div class="slide-inner">
+
+  <p class="eyebrow">06 · Future</p>
+  <h2>未来优化方向</h2>
+  <div class="grid-3 grow">
+    <div class="panel">
+      <div class="goal-title">可点户型图</div>
+      <ul>
+        <li><strong>当前</strong>位置靠文字字段 + 照片说明「放在哪」，清单和搜索已能按位置找。</li>
+        <li><strong>局限</strong>对不熟家里布局的人不够直观；平面图更贴「家庭本子」，但画图与维护成本高。</li>
+        <li><strong>未来</strong>把家（含柜 / 箱 / 桌）做成可点平面图来标位置；家不大且照片够用时后做。</li>
+      </ul>
+    </div>
+    <div class="panel">
+      <div class="goal-title">小六语音入口</div>
+      <ul>
+        <li><strong>当前</strong>记下、查找都靠点选与打字；小六形象主要承担家庭氛围，不承担输入。</li>
+        <li><strong>局限</strong>录入字段多时手机打字成本高；口语「帮我记一下药箱里的感冒药」更自然。</li>
+        <li><strong>未来</strong>点柴犬说话完成「记下」或「找东西」（背后分流即可）；先过语音识别与口语结构化。</li>
+      </ul>
+    </div>
+    <div class="panel">
+      <div class="goal-title">备案自定义域名</div>
+      <ul>
+        <li><strong>当前</strong>线上用 CloudBase 默认域名，可能出风险页或下载 index.html。</li>
+        <li><strong>局限</strong>和机型无关，和打开方式、风险 Cookie 有关；试用说明不得不写得很长。</li>
+        <li><strong>未来</strong>正在申请备案域名；绑上后去掉这层限制，链接可直接当正常网站分享。</li>
+      </ul>
+    </div>
+  </div>
+
+  </div>
+</section>
+
+<section class="slide" data-folio="31">
+  <div class="slide-inner">
+
+  <p class="eyebrow">07 · Reflection</p>
+  <h2>项目收获</h2>
+  <div class="insights grow">
+    <article class="insight"><span class="insight-num">01</span><p>数据敏感度决定产品形态：私域信息就要登录与家庭边界；轻试用能力可以免登录。</p></article>
+    <article class="insight"><span class="insight-num">02</span><p>平台约束会改产品设计：不能网页自助注册时，诚实改成「控制台开号 + 只登录」比留一个必失败的按钮更好。</p></article>
+    <article class="insight"><span class="insight-num">03</span><p>上线约束也要写进产品说明：默认域名的风控和机型无关，和打开方式、风险 Cookie 有关；说不清就会误导试用的人。</p></article>
+    <article class="insight"><span class="insight-num">04</span><p>真机反馈不可替代：一条「按钮被挡住」就足以推翻桌面上看起来合理的布局。</p></article>
+    <article class="insight"><span class="insight-num">05</span><p>验证强度要匹配问题：推荐机制需要更多结构化测试；生活工具在早期可以主要靠自用观察，但要诚实写明证据边界。</p></article>
+    <article class="insight"><span class="insight-num">06</span><p>过程资产本身也是作品：开发日志 → Skill，把第一次作品集的坑变成第二次的默认能力。</p></article>
+  </div>
+  <p class="callout" style="margin-top:10px">
+    把家里的私域工具做成可上线的形态，比多堆功能更重要：约束要写进设计，说明要写给试用的人听懂。
+  </p>
+
+  </div>
+</section>
+
+<section class="slide" data-folio="32">
+  <div class="slide-inner">
+
+  <p class="eyebrow">08 · Demo</p>
+  <h2>线上体验 · Remember Me</h2>
+  <div class="grow" style="display:flex;flex-direction:column;justify-content:center;max-width:48em">
+    <p class="lead" style="margin-bottom:12px">已部署到 CloudBase。请用体验账号登录（非正式家人账号）：</p>
+    <p class="cred">用户名 test1 · 密码 Abcd1234</p>
+    <div class="callout" style="margin:14px 0">
+      <span class="label">打开说明</span>
+      <strong>请用系统浏览器（Safari / Chrome）在地址栏打开完整链接。</strong>
+      当前仍是腾讯云默认域名：可能先出风险提示（点确认即可），也可能下载 index.html——手机、电脑都可能遇到，和打开方式、是否还在风险 Cookie 有效期内有关；请勿依赖主屏幕快捷方式。
+      我正在申请备案域名，绑定后即可去掉这层限制。重传部署解决不了这个问题。
+    </div>
+    <p class="body" style="font-size:15px;word-break:break-all">
+      https://remember-me-remember-me-d1gmd5iiu9d88c58a.webapps.tcloudbase.com
+    </p>
+  </div>
+  <div class="footer-bar">
+    <span>© 黄子骜 · Ziao Huang</span>
+    <span>作品集网站：https://ziao-huang-0108.github.io/ziao-huang.github.io/</span>
+  </div>
+
+  </div>
+</section>
+
 </body>
 </html>
