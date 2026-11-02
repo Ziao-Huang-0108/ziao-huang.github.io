@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>今天吃什么｜Case Study · 黄子骜</title>
+  <meta name="description" content="AI 美食推荐助手「今天吃什么」产品复盘：多人用餐决策、分层推荐与用户测试。" />
+  <meta name="theme-color" content="#eef0f3" />
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="今天吃什么｜Case Study · 黄子骜" />
+  <meta property="og:description" content="多人用餐决策、分层推荐与用户测试复盘。" />
+  <meta property="og:image" content="https://ziao-huang-0108.github.io/ziao-huang.github.io/assets/hero/eatwhat.jpg" />
+  <link rel="icon" href="assets/icons/xiaoliu-192.png" type="image/png" />
+  <link rel="stylesheet" href="css/site.css" />
+</head>
+<body>
+  <header class="site-header">
+    <div class="wrap inner">
+      <a class="brand" href="index.html">Ziao Huang</a>
+      <nav class="nav" aria-label="主导航">
+        <a href="index.html">首页</a>
+        <a href="eatwhat.html" aria-current="page">今天吃什么</a>
+        <a href="remember-me.html">Remember Me</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="case-hero">
+      <div class="wrap">
+        <p class="eyebrow">Case · Product Design</p>
+        <h1>今天吃什么</h1>
+        <p class="lead">
+          从多人用餐决策痛点出发，探索推荐系统的产品设计与迭代——
+          不是选出「最好吃」的店，而是协调多方需求，快速给出一个大家都能接受的答案。
+        </p>
+        <div class="meta-row">
+          <span class="strong">免登录 · 点开即用</span>
+          <span>产品设计 / 推荐逻辑</span>
+          <span>2026.9</span>
+          <span>Next.js · LocalStorage</span>
+        </div>
+        <div class="actions">
+          <a class="btn btn-primary" href="https://eatwhat-d8g01gpqk878dd6ed-1324990131.tcloudbaseapp.com" target="_blank" rel="noopener">打开线上 Demo</a>
+          <a class="btn btn-secondary" href="#toc">看目录</a>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="toc">
+      <div class="wrap">
+        <p class="section-num">目录</p>
+        <h2>目录</h2>
+        <div class="toc">
+          <a href="#problem">01 项目背景 <span>Problem</span></a>
+          <a href="#goal">02 产品目标与定位 <span>Goal</span></a>
+          <a href="#solution">03 产品方案 <span>Solution</span></a>
+          <a href="#mvp">04 MVP 与体验路径 <span>Prototype</span></a>
+          <a href="#testing">05 测试与打脸 <span>Testing</span></a>
+          <a href="#future">06 未来方向 <span>Future</span></a>
+          <a href="#reflection">07 项目收获 <span>Reflection</span></a>
+          <a href="#demo">08 线上 Demo <span>Try it</span></a>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="problem">
+      <div class="wrap prose">
+        <p class="section-num">问题</p>
+        <h2>项目背景：多人吃饭，为什么这么难？</h2>
+        <p>
+          面对「吃什么」，很多人会说「随便」，把决定权交给别人，或只给出「不太能吃辣」之类的模糊范围。
+          多人一起时，需求还可能冲突；选得不好，做决定的人容易承担额外压力。
+        </p>
+        <p>
+          美团、大众点评、小红书更擅长帮用户<strong>拿到餐厅列表</strong>。
+          用户仍要从大量候选里自行了解并做最终决定，也很难同时结合多人不同需求。
+          对选择困难的人来说，即使一个人吃饭也可能卡住。
+        </p>
+        <div class="callout">
+          <span class="label">Core question</span>
+          <p>
+            问题不是「找不到餐厅」，而是面对大量选择时，很难快速找到一个大家都能接受的答案。
+            当选择很多、需求又有差异时，如何帮助用户完成一次「可接受」的用餐决策？
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="goal">
+      <div class="wrap prose">
+        <p class="section-num">目标</p>
+        <h2>产品目标与定位</h2>
+        <p>把「找餐厅」升级为「帮用户做决定」，验证四个方向：</p>
+        <div class="grid-2" style="margin:18px 0">
+          <div class="panel"><div class="goal-title">个性化 · 成员档案</div><p>多成员偏好、忌口与历史反馈可组合进一次推荐。</p></div>
+          <div class="panel"><div class="goal-title">需求理解</div><p>把偏好与忌口变成可用于推荐的结构化条件。</p></div>
+          <div class="panel"><div class="goal-title">推荐可解释</div><p>展示推荐依据与评分构成，让用户知道「为什么是这家」。</p></div>
+          <div class="panel"><div class="goal-title">反馈闭环</div><p>用餐后评分回写到具体成员，影响后续推荐。</p></div>
+        </div>
+        <div class="callout">
+          <span class="label">Positioning</span>
+          <p>
+            核心目标不是预测「用户最喜欢哪一家」，而是在多人、多种需求下做优先级排序与协调，快速给出可接受结果。
+            相对美团 / 点评：它们已有真实餐厅数据库；本项目更接近平台可增加的一层<strong>决策 / 推荐能力</strong>，而不是从零搭一套餐饮 App。
+            产品做成<strong>免登录、点开即用</strong>，降低试用成本，也符合「能力层」该有的轻入口。
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="solution">
+      <div class="wrap prose">
+        <p class="section-num">方案</p>
+        <h2>产品方案设计</h2>
+        <p class="flow-caption">产品逻辑一览：从勾选成员到推荐，再到打分回写。</p>
+        <div class="flow" aria-label="今天吃什么产品逻辑流程图">
+          <div class="flow-step">选成员 + 场景 / 距离<span>合并偏好、忌口与历史评分</span></div>
+          <div class="flow-arrow">↓</div>
+          <div class="flow-step">硬过滤<span>忌口命中即淘汰；距离无结果则放宽</span></div>
+          <div class="flow-arrow">↓</div>
+          <div class="flow-step">排除历史差评<span>任一成员 1–2 星 → 不进排序池</span></div>
+          <div class="flow-arrow">↓</div>
+          <div class="flow-step">偏好软门控<span>尽量满足本次想吃什么，但不一票否决</span></div>
+          <div class="flow-arrow">↓</div>
+          <div class="flow-branch">
+            <div class="flow-step">
+              <span class="flow-branch-label">有命中</span>
+              只在偏好子集内排序
+            </div>
+            <div class="flow-step">
+              <span class="flow-branch-label">无命中</span>
+              退回全候选再排序
+            </div>
+          </div>
+          <div class="flow-arrow">↓</div>
+          <div class="flow-step">可解释结果 → 打分反馈<span>评分写入对应成员记忆，供下次推荐</span></div>
+        </div>
+
+        <h3>3.1 可组合的成员档案</h3>
+        <p>
+          吃饭天然多人，因此没有做成单一用户画像，而是可组合的成员档案：
+          同一个人跟不同的人吃饭，参与决策的需求组合也不同。每次勾选实际成员，合并偏好、忌口与历史评分后再进入推荐。
+        </p>
+
+        <h3>3.2 硬约束 vs 软偏好</h3>
+        <p>
+          <strong>硬约束</strong>（如过敏、最大距离）不能违反；
+          <strong>软偏好</strong>（如「想吃火锅」）尽量满足，但不意味着其他类型绝对不能推。
+        </p>
+
+        <h3>3.3 三层优先级（不全混在一个加减分里）</h3>
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr><th>因素</th><th>层级</th><th>行为</th></tr>
+            </thead>
+            <tbody>
+              <tr><td>忌口 / 过敏</td><td>硬约束</td><td>命中即淘汰</td></tr>
+              <tr><td>最大距离</td><td>硬约束（可放宽）</td><td>先按范围过滤；空则放宽</td></tr>
+              <tr><td>历史 1–2 星</td><td>排除</td><td>任一成员差评 → 不进排序池</td></tr>
+              <tr><td>饮食偏好</td><td>软门控</td><td>有命中 → 子集排序；无命中 → 退回全候选</td></tr>
+              <tr><td>场景 / 星级 / 历史好评</td><td>评分</td><td>在候选池内打分；同分随机</td></tr>
+              <tr><td>用餐人数</td><td>仅展示</td><td>不参与硬淘汰（测试后调整）</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p>推荐机制比「记一张清单」更重：召回与排序必须对齐目标，否则链路会整体失效——这也是后面要做更多测试的原因。</p>
+      </div>
+    </section>
+
+    <section class="section" id="mvp">
+      <div class="wrap prose">
+        <p class="section-num">原型</p>
+        <h2>MVP：三步向导，免登录即用</h2>
+        <p>选择用餐成员 → 设置场景与人数 → 设置最大距离 → 生成推荐；结果页可再抽一次、打分，并可展开看计算过程。</p>
+        <div class="shot-phone-row" style="margin-top:20px">
+          <figure class="shot shot-phone">
+            <img loading="lazy" decoding="async" src="assets/eatwhat/01-members-phone.jpg" alt="选择用餐人档案（手机）" />
+            <figcaption>选择用餐人档案（偏好与忌口）</figcaption>
+          </figure>
+          <figure class="shot shot-phone">
+            <img loading="lazy" decoding="async" src="assets/eatwhat/02-scene-phone.jpg" alt="用餐场景与人数（手机）" />
+            <figcaption>设置用餐场景与人数</figcaption>
+          </figure>
+        </div>
+        <div class="shot-phone-row">
+          <figure class="shot shot-phone">
+            <img loading="lazy" decoding="async" src="assets/eatwhat/03-distance-phone.jpg" alt="最大距离（手机）" />
+            <figcaption>设置最大距离</figcaption>
+          </figure>
+          <figure class="shot shot-phone">
+            <img loading="lazy" decoding="async" src="assets/eatwhat/04-result-phone.jpg" alt="推荐结果（手机）" />
+            <figcaption>推荐结果与理由</figcaption>
+          </figure>
+        </div>
+        <div class="shot-phone-row">
+          <figure class="shot shot-phone">
+            <img loading="lazy" decoding="async" src="assets/eatwhat/05-detail-phone.jpg" alt="推荐计算详情（手机）" />
+            <figcaption>可解释的评分明细</figcaption>
+          </figure>
+          <figure class="shot shot-phone">
+            <img loading="lazy" decoding="async" src="assets/eatwhat/06-actions.png" alt="结果页操作与计算详情入口（手机）" />
+            <figcaption>结果页：打分、再抽一次、立即出发；可展开计算详情</figcaption>
+          </figure>
+        </div>
+        <figure class="shot" style="margin-top:1rem">
+          <img loading="lazy" decoding="async" src="assets/eatwhat/06-debug.png" alt="测试记录 / Debug 面板" />
+          <figcaption>Debug / 测试记录：还原「为什么推这家」（电脑端截图，便于完整展示面板）</figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <section class="section" id="testing">
+      <div class="wrap prose">
+        <p class="section-num">测试</p>
+        <h2>测试与打脸：假设要被结果纠正</h2>
+        <p>
+          推荐链路一复杂，就不能只靠直觉认功能「合理」。
+          我用构造场景做了多轮测试，并补上 Usage Log / Debug，让异常结果可复盘。
+        </p>
+
+        <div class="issue">
+          <div class="head"><span class="num">01</span><h3>用餐人数不应成为硬限制</h3></div>
+          <p>「一人食 + 想吃火锅」时，火锅店因适用人数不含 1 人被直接滤掉。调整：人数改为参考信息，不再硬淘汰。</p>
+        </div>
+        <div class="issue">
+          <div class="head"><span class="num">02</span><h3>看起来周全的输入可能完全没用</h3></div>
+          <p>「交通方式」改了，推荐却不变——字段没进逻辑。调整：删掉该输入。只有能改变决策结果的变量，才值得增加输入成本。</p>
+        </div>
+        <div class="issue">
+          <div class="head"><span class="num">03</span><h3>记忆数据到底属于谁</h3></div>
+          <p>成员 A 的五星评分影响了只选成员 B 的推荐。根因是历史记忆按浏览器全局存，没绑到档案。调整：评分严格归属成员。这是产品数据建模问题，不只是存储 Bug。</p>
+        </div>
+        <div class="issue warn">
+          <div class="head"><span class="num">04</span><h3>当下需求应优先于历史偏好</h3></div>
+          <p>同时有人历史爱泰国菜、有人当前想火锅时，系统先推了泰国菜。调整：降低历史权重，把本次偏好前置到召回。过去喜欢什么，不能盖住这次想吃什么。</p>
+        </div>
+        <div class="issue ok">
+          <div class="head"><span class="num">05</span><h3>召回对了，排序目标仍可能错位</h3></div>
+          <p>
+            第二轮构造多人冲突场景：火锅进了候选池，但最终排序仍被其他类型压过——偏好只缩了候选，池内打分未体现群体偏好满足度。
+            启示：推荐要同时做好「哪些店能进来」和「进来后优先推谁」，两者目标不一致，整条链路会失效。
+          </p>
+        </div>
+        <div class="callout">
+          <span class="label">Why more testing here</span>
+          <p>
+            相对 Remember Me，本项目的逻辑中心是推荐机制，错误更隐蔽，所以测试密度更高：人工场景 → 可观测日志 → 冲突场景复盘。
+            做下来最深的体会是：要用结果打脸假设，而不是把「功能做完」当成验证完成。
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="future">
+      <div class="wrap prose">
+        <p class="section-num">展望</p>
+        <h2>未来优化方向</h2>
+        <div class="grid-3">
+          <div class="panel">
+            <div class="goal-title">真实位置</div>
+            <ul class="future-detail">
+              <li><strong>当前</strong>用预设 / 模拟距离做硬过滤，距离是「离我多远」的单点近似。</li>
+              <li><strong>局限</strong>多人吃饭时，真正的问题往往是「对大家都方不方便」，不是只服务某一个人的坐标。</li>
+              <li><strong>未来</strong>接入地图 / 定位，收集多成员位置，优先推对全体出行更友好的中间地带餐厅。</li>
+            </ul>
+          </div>
+          <div class="panel">
+            <div class="goal-title">菜品级匹配</div>
+            <ul class="future-detail">
+              <li><strong>当前</strong>推荐对象停在餐厅：类型、场景、忌口都按店级标签处理。</li>
+              <li><strong>局限</strong>店适合某人，不等于每道菜都适合；海鲜过敏仍可能在店里吃到安全选项。</li>
+              <li><strong>未来</strong>接入菜单信息，按菜品考虑过敏、饮食限制与营养，形成「餐厅 → 菜品 → 成员」匹配。</li>
+            </ul>
+          </div>
+          <div class="panel">
+            <div class="goal-title">群体满意度</div>
+            <ul class="future-detail">
+              <li><strong>当前</strong>主要按单店综合适配度排序；偏好更多影响「谁能进池」。</li>
+              <li><strong>局限</strong>多人偏好都进了候选，最终仍可能更偏向其中一人，群体满足度不显式。</li>
+              <li><strong>未来</strong>把「满足了多少人的核心需求、有没有人完全吃不了」写进排序，并支持分成员反馈。</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="reflection">
+      <div class="wrap prose">
+        <p class="section-num">收获</p>
+        <h2>项目收获</h2>
+        <div class="insights">
+          <article class="insight">
+            <span class="insight-num">01</span>
+            <p>现实里合理的因素（人数、交通），放进产品不一定该做约束；要用测试验证。</p>
+          </article>
+          <article class="insight">
+            <span class="insight-num">02</span>
+            <p>推荐不只是算分：数据归属、需求优先级、可解释性、召回与排序对齐，都是产品设计。</p>
+          </article>
+          <article class="insight">
+            <span class="insight-num">03</span>
+            <p>功能跑通 ≠ 产品闭环；核心操作在真实页面上必须可点（结果页滚动曾挡住按钮）。</p>
+          </article>
+          <article class="insight">
+            <span class="insight-num">04</span>
+            <p>整理本项目复盘时大量翻聊天记录，成本很高——这也直接推动了下一个项目从第一天就写开发日志。</p>
+          </article>
+        </div>
+        <p class="reflection-close">一个功能看起来合理，并不代表它真的有用。只有通过使用、观察结果、再改产品，才能知道最初的想法是否成立。</p>
+      </div>
+    </section>
+
+    <section class="section" id="demo">
+      <div class="wrap prose">
+        <p class="section-num">Demo</p>
+        <h2>线上体验</h2>
+        <p>已部署到 CloudBase 静态托管。免登录，点开即可走完推荐流程。</p>
+        <div class="actions">
+          <a class="btn btn-primary" href="https://eatwhat-d8g01gpqk878dd6ed-1324990131.tcloudbaseapp.com" target="_blank" rel="noopener">打开「今天吃什么」</a>
+          <a class="btn btn-secondary" href="remember-me.html">下一篇：Remember Me</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="wrap inner">
+      <span>© 黄子骜 · Ziao Huang</span>
+      <a href="index.html">返回首页</a>
+    </div>
+  </footer>
+</body>
+</html>

@@ -1,0 +1,404 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Remember Me｜Case Study · 黄子骜</title>
+  <meta name="description" content="家庭物品本子 Remember Me 产品复盘：私域登录、过期提醒、上线约束与开发日志方法。" />
+  <meta name="theme-color" content="#eef0f3" />
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="Remember Me｜Case Study · 黄子骜" />
+  <meta property="og:description" content="家庭物品本子：私域登录、过期提醒、上线约束与开发日志方法。" />
+  <meta property="og:image" content="https://ziao-huang-0108.github.io/ziao-huang.github.io/assets/hero/remember-me.jpg" />
+  <link rel="icon" href="assets/icons/xiaoliu-192.png" type="image/png" />
+  <link rel="stylesheet" href="css/site.css" />
+</head>
+<body>
+  <header class="site-header">
+    <div class="wrap inner">
+      <a class="brand" href="index.html">Ziao Huang</a>
+      <nav class="nav" aria-label="主导航">
+        <a href="index.html">首页</a>
+        <a href="eatwhat.html">今天吃什么</a>
+        <a href="remember-me.html" aria-current="page">Remember Me</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="case-hero">
+      <div class="wrap">
+        <p class="eyebrow">Case · Product Design</p>
+        <h1>Remember Me</h1>
+        <p class="lead">
+          全家一起用的物品小本子：什么时候买了什么、放在哪、还有多久过期，一眼能看到。
+          管的是家里的私密信息，因此需要登录；形态上更接近一个独立 App 的雏形，而不是某个已有平台上的插件功能。
+        </p>
+        <div class="meta-row">
+          <span class="strong">需登录 · 独立 App 雏形</span>
+          <span>产品设计 / 落地与迭代</span>
+          <span>2026.10</span>
+          <span>PWA · CloudBase · PostgreSQL</span>
+        </div>
+        <div class="actions">
+          <a class="btn btn-primary" href="https://remember-me-remember-me-d1gmd5iiu9d88c58a.webapps.tcloudbase.com" target="_blank" rel="noopener">打开线上 Demo</a>
+          <a class="btn btn-secondary" href="#toc">看目录</a>
+        </div>
+        <p class="notice-warn">
+          请用系统浏览器打开完整链接；默认域名可能有风险提示。账号与说明见
+          <a href="#demo">线上体验</a>。
+        </p>
+      </div>
+    </section>
+
+    <section class="section" id="toc">
+      <div class="wrap">
+        <p class="section-num">目录</p>
+        <h2>目录</h2>
+        <div class="toc">
+          <a href="#problem">01 项目背景 <span>Problem</span></a>
+          <a href="#goal">02 产品目标与定位 <span>Goal</span></a>
+          <a href="#solution">03 产品方案 <span>Solution</span></a>
+          <a href="#iteration">04 迭代与洞察 <span>Iteration</span></a>
+          <a href="#method">05 过程方法 <span>Method</span></a>
+          <a href="#future">06 未来方向 <span>Future</span></a>
+          <a href="#reflection">07 项目收获 <span>Reflection</span></a>
+          <a href="#demo">08 线上 Demo <span>Try it</span></a>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="problem">
+      <div class="wrap prose">
+        <p class="section-num">问题</p>
+        <h2>项目背景：家里的东西，为什么总对不上？</h2>
+        <p>家里东西越买越多，常见几种遇到的情况：</p>
+        <ul class="clean">
+          <li><strong>忘了放在哪</strong>：钥匙、首饰、衣物等，要用时翻遍柜子。</li>
+          <li><strong>过期了才发现</strong>：药品、调料、护肤品、零食等放着放着只能扔掉。</li>
+          <li><strong>重复购买</strong>：不知道还有存货，又买了一份。</li>
+          <li><strong>信息不共享</strong>：某一个人购买、存放的，其他家人不知道。</li>
+        </ul>
+        <div class="callout">
+          <span class="label">Core question</span>
+          <p>
+            如何让一家人用同一份「物品小本子」，在需要时快速知道东西在哪、急不急处理，
+            同时又把家庭私密信息关在可控制的访问范围里？
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="goal">
+      <div class="wrap prose">
+        <p class="section-num">目标</p>
+        <h2>产品目标与定位</h2>
+        <p>目标用户按角色拆开，避免做成「只有采购者爱用」的记事本：</p>
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr><th>角色</th><th>特点</th><th>主要需求</th></tr>
+            </thead>
+            <tbody>
+              <tr><td>采购者</td><td>会主动录入</td><td>录入要快，操作简单</td></tr>
+              <tr><td>使用者</td><td>很少录入，偶尔查找</td><td>能快速搜到东西在哪</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="callout">
+          <span class="label">Positioning</span>
+          <p>
+            相对「今天吃什么」：那个项目更像美团 / 大众点评等已有的平台可增加的决策能力层，而作为网页可以免登录点开即用。
+            Remember Me 要管的是家里私人物品与过期信息，需要家庭成员身份与家庭边界，因此更像<strong>独立 App 的雏形</strong>：
+            登录、家庭空间、云端同步、过期行动提示，都是产品本身，而不是外挂功能。
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="solution">
+      <div class="wrap prose">
+        <p class="section-num">方案</p>
+        <h2>产品方案设计</h2>
+        <p>按打开页面的先后顺序：先进门（登录）→ 再记什么 → 过期颜色怎么读 → 怎么找、怎么切换家。</p>
+        <p class="flow-caption">产品逻辑一览：从打开链接到清单上的主要动作。</p>
+        <div class="flow" aria-label="Remember Me 产品逻辑流程图">
+          <div class="flow-step">打开链接 → 登录<span>用户名 + 密码；账号由我开通</span></div>
+          <div class="flow-arrow">↓</div>
+          <div class="flow-branch">
+            <div class="flow-step">
+              <span class="flow-branch-label">只有一家</span>
+              直接进入该家清单
+            </div>
+            <div class="flow-step">
+              <span class="flow-branch-label">有多家</span>
+              先选家 / 建家 / 邀请码加入
+            </div>
+          </div>
+          <div class="flow-arrow">↓</div>
+          <div class="flow-step">清单按过期紧急度着色排序<span>打开时用过期日减今天现算，最急的在前</span></div>
+          <div class="flow-arrow">↓</div>
+          <div class="flow-actions">
+            <div class="flow-step">记一件</div>
+            <div class="flow-step">搜索 / 过期·类别筛选</div>
+            <div class="flow-step">切换家 / 新建家</div>
+          </div>
+        </div>
+
+        <h3 id="access">3.1 访问与形态：为什么要登录</h3>
+        <p>
+          「今天吃什么」可以免登录，因为试用成本低、数据敏感度相对较低。
+          Remember Me 记录的是药品位置、家用存货等<strong>家庭私域信息</strong>，不能做成谁打开都能看的公开页，所以必须登录。
+        </p>
+        <div class="grid-2" style="margin:18px 0">
+          <div class="panel">
+            <div class="goal-title">当前访问策略</div>
+            <p>
+              为了安全性和稳定性，不开放网页自助注册。
+              账号只在我这边开通：只有我配置过的账户+密码可以进入。
+              这是家庭小范围试用阶段的取舍，并非漏做注册。
+            </p>
+          </div>
+          <div class="panel">
+            <div class="goal-title">形态选择</div>
+            <p>
+              手机网页（PWA）+ CloudBase：不用上架审核，一个链接就能分享；
+              可添加到主屏幕。后端用腾讯云 PostgreSQL，国内访问更稳。
+            </p>
+          </div>
+        </div>
+        <p>给面试官 / 同学试用，我专门开了体验账号（非正式家人账号）：</p>
+        <p class="cred">用户名 test1 · 密码 Abcd1234</p>
+        <p>打开方式与域名说明见 <a href="#demo">线上体验</a>。</p>
+        <div class="shot-phone-row" style="margin-top:20px">
+          <figure class="shot shot-phone">
+            <img loading="lazy" decoding="async" src="assets/remember-me/03-login.png" alt="Remember Me 登录页（手机）" />
+            <figcaption>登录页（手机）：用户名 + 密码；本站只记住本机用过的用户名</figcaption>
+          </figure>
+          <figure class="shot shot-phone">
+            <img loading="lazy" decoding="async" src="assets/remember-me/04-pick-home.png" alt="登录后选择家庭（手机）" />
+            <figcaption>选家页（手机）：多家时先进哪一家</figcaption>
+          </figure>
+        </div>
+
+        <h3>3.2 记什么：字段为行动服务</h3>
+        <p>
+          每件物品记录名称、价格、功能/用途、购买日期、过期日期、放置位置、备注、照片与类别。
+          清单默认按「谁最先过期」排在前面——核心问题是「什么该先处理」，不是「最近买了什么」。
+        </p>
+
+        <h3>3.3 过期颜色：把紧急程度变成一眼能懂的信号</h3>
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr><th>剩余天数 d</th><th>颜色</th><th>行动含义</th></tr>
+            </thead>
+            <tbody>
+              <tr><td>d ≤ 30</td><td>红</td><td>马上处理</td></tr>
+              <tr><td>30 &lt; d &lt; 180</td><td>橙</td><td>近期留意</td></tr>
+              <tr><td>180 ≤ d &lt; 365</td><td>黄</td><td>心里有数</td></tr>
+              <tr><td>d ≥ 365</td><td>绿</td><td>不用操心</td></tr>
+              <tr><td>已过期</td><td>深红 + 过期天数</td><td>单独一档，优先处理</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p>同一档内越接近过期颜色越深，让最急的东西最显眼。剩余天数不靠定时任务「每天刷新」，而是打开时用过期日减今天现算，数字永远跟日历走。</p>
+        <div class="shot-phone-row" style="margin-top:20px">
+          <figure class="shot shot-phone">
+            <img loading="lazy" decoding="async" src="assets/remember-me/05-items-colored.png" alt="不同过期紧急程度的物品清单（手机）" />
+            <figcaption>清单（手机）：深红 / 红 / 橙 / 黄等，一眼分出急不急</figcaption>
+          </figure>
+          <figure class="shot shot-phone">
+            <img loading="lazy" decoding="async" src="assets/remember-me/05-expiry-colors.png" alt="过期颜色图例说明（手机）" />
+            <figcaption>下拉可见图例：不同颜色表示不同紧急程度的过期时间</figcaption>
+          </figure>
+        </div>
+
+        <h3>3.4 查找与家庭</h3>
+        <p>
+          支持按过期情况、类别筛选，以及按名称 / 位置 / 备注关键词搜索。
+          一人可加入多个家庭并切换——对应「以后住别处仍要看旧家物品」的真实场景。
+        </p>
+        <figure class="shot shot-phone">
+          <img loading="lazy" decoding="async" src="assets/remember-me/02-list.png" alt="Remember Me 清单界面（手机）" />
+          <figcaption>清单顶栏（手机）：搜索 + 过期颜色筛选 + 当前家切换</figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <section class="section" id="iteration">
+      <div class="wrap prose">
+        <p class="section-num">迭代</p>
+        <h2>迭代与洞察</h2>
+        <p>
+          相对「今天吃什么」里更重的推荐测试，Remember Me 的迭代主要来自<strong>自己在使用中的观察和思考</strong>。
+          外部真实反馈目前明确可复述的只有一条（见下）。验证方式不同，不是偷懒，而是产品阶段与问题类型不同。
+        </p>
+
+        <div class="issue ok">
+          <div class="head"><span class="num">01</span><h3>定位转折：从「我一个人用」到「全家一起用」</h3></div>
+          <p>
+            最早做成给自己用的管理个人物品的单机本子，数据只在本机。但生活在家庭中会用到很多家庭共用的物品，这些物品常常是一个人买、其他人找或者根本不知道这些物品的存在，直到过期了才被翻出来，造成了不必要的浪费。
+            于是定位改成全家共用：字段、过期颜色、账号与家庭空间都按多人场景重定。
+          </p>
+        </div>
+        <div class="issue ok">
+          <div class="head"><span class="num">02</span><h3>先把主路径做顺，再接云端</h3></div>
+          <p>
+            登录和云端可以后接，但这个产品的核心功能————记录物品信息（功能、放置位置、什么时候过期）必须先顺。先在本地把录入和清单做清楚，再做家庭同步。
+            保质期快捷按钮少让人自己换算日历；排序默认「谁先过期」，更好地起到提醒作用。
+          </p>
+        </div>
+        <div class="issue warn">
+          <div class="head"><span class="num">03</span><h3>自用观察驱动改版</h3></div>
+          <p>
+            自己试用觉得第一版页面设计太单调，删除和编辑的按键也不明显。于是加大触控区与类别标签，补上照片和排序筛选，让清单更一目了然、条目更好点击。
+            界面放了家里柴犬小六的卡通形象，进门可播放我的歌《4am》（可静音），把「家庭」感做进进门体验；装饰不喧宾夺主。
+          </p>
+        </div>
+        <div class="issue">
+          <div class="head"><span class="num">04</span><h3>共享落地时的平台约束</h3></div>
+          <p>
+            登录用用户名 + 密码，考虑到用户只有本家庭成员所以没必要接微信登录和短信。腾讯云不允许网页自助开号，就去掉注册入口，账号只在控制台开通。
+            体验版只有 PostgreSQL，数据改走 SQL；前端从国内访问不稳定的 Vercel 迁到 CloudBase 静态托管，和后端同落腾讯云。
+          </p>
+        </div>
+        <div class="issue ok">
+          <div class="head"><span class="num">05</span><h3>唯一外部交互反馈：按钮被挡住了</h3></div>
+          <p>
+            一位家庭成员在手机上试，发现音乐控件挡住了「保存」，电脑宽屏上看不出来。把保存改到底部主按钮，音乐改成可拖、可贴边的小钮。
+            功能步骤没变，真机可用性过关。这也提醒了我这个产品的使用设备是手机，所以我在进行页面设计的时候应该考虑的是手机用户的使用体验。
+          </p>
+        </div>
+        <div class="issue warn">
+          <div class="head"><span class="num">06</span><h3>自用提出：一家不够用，分类也不够找——多家切换 + 关键词搜索</h3></div>
+          <p>
+            自用发现以后可能会到别的城市生活，新家和旧家物品需要查看；东西多了单靠过期 / 类别不好找。于是支持一人多家（多家时先选家，顶栏可切换），并加关键词搜索（可与原筛选叠加）。
+            库表本来就允许多家，这次主要改前端认家逻辑，没有改表结构。
+          </p>
+        </div>
+        <div class="issue warn">
+          <div class="head"><span class="num">07</span><h3>默认域名能开着开着变成下载——排查后改成诚实说明</h3></div>
+          <p>
+            默认域名有时正常、有时出风险页、有时下载 <code>index.html</code>；电脑曾能开后一直下载，手机删快捷方式再输网址又恢复。
+            是平台对未备案域名的策略，和打开方式、风险 Cookie 有关；经过尝试发现重传无效。短期解决方案是写清试用说明，根本解法是申请备案域名（目前正在申请中）。
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="method">
+      <div class="wrap prose">
+        <p class="section-num">方法</p>
+        <h2>过程方法：从翻聊天的痛苦，到开发日志 Skill</h2>
+        <p>
+          整理第一个作品集（今天吃什么）时，我需要翻大量对话才能拼出「当时为什么这么做」，过程很痛苦，也容易漏掉决策理由。
+        </p>
+        <p>
+          所以做 Remember Me 时，一开始就加了硬约束：每完成一步，就同时记录在开发日志中：做了什么、为什么、遇到什么问题、怎么解决、有没有反馈。
+          这份记录后来收成可复用的 Skill，让之后的项目默认带着「外人也能读懂」的过程资产，不需要事后再费力整理。
+        </p>
+        <div class="callout">
+          <span class="label">Why this matters</span>
+          <p>
+            「今天吃什么」让我确认：复杂推荐必须靠测试验证假设。
+            Remember Me 则是在家庭私域与平台约束里，把工具真正做成可上线的形态，并把复盘方法固定下来。
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="future">
+      <div class="wrap prose">
+        <p class="section-num">展望</p>
+        <h2>未来优化方向</h2>
+        <div class="grid-3">
+          <div class="panel">
+            <div class="goal-title">可点户型图</div>
+            <ul class="future-detail">
+              <li><strong>当前</strong>位置靠文字字段 + 照片说明「放在哪」，清单和搜索已能按位置找。</li>
+              <li><strong>局限</strong>对不熟家里布局的人不够直观；平面图更贴「家庭本子」，但画图与维护成本高。</li>
+              <li><strong>未来</strong>把家（含柜 / 箱 / 桌）做成可点平面图来标位置；家不大且照片够用时后做。</li>
+            </ul>
+          </div>
+          <div class="panel">
+            <div class="goal-title">小六语音入口</div>
+            <ul class="future-detail">
+              <li><strong>当前</strong>记下、查找都靠点选与打字；小六形象主要承担家庭氛围，不承担输入。</li>
+              <li><strong>局限</strong>录入字段多时手机打字成本高；口语「帮我记一下药箱里的感冒药」更自然。</li>
+              <li><strong>未来</strong>点柴犬说话完成「记下」或「找东西」（背后分流即可）；先过语音识别与口语结构化。</li>
+            </ul>
+          </div>
+          <div class="panel">
+            <div class="goal-title">备案自定义域名</div>
+            <ul class="future-detail">
+              <li><strong>当前</strong>线上用 CloudBase 默认域名，可能出风险页或下载 <code>index.html</code>。</li>
+              <li><strong>局限</strong>和机型无关，和打开方式、风险 Cookie 有关；试用说明不得不写得很长。</li>
+              <li><strong>未来</strong>正在申请备案域名；绑上后去掉这层限制，链接可直接当正常网站分享。</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="reflection">
+      <div class="wrap prose">
+        <p class="section-num">收获</p>
+        <h2>项目收获</h2>
+        <div class="insights">
+          <article class="insight">
+            <span class="insight-num">01</span>
+            <p>数据敏感度决定产品形态：私域信息就要登录与家庭边界；轻试用能力可以免登录。</p>
+          </article>
+          <article class="insight">
+            <span class="insight-num">02</span>
+            <p>平台约束会改产品设计：不能网页自助注册时，诚实改成「控制台开号 + 只登录」比留一个必失败的按钮更好。</p>
+          </article>
+          <article class="insight">
+            <span class="insight-num">03</span>
+            <p>上线约束也要写进产品说明：默认域名的风控和机型无关，和打开方式、风险 Cookie 有关；说不清就会误导试用的人。</p>
+          </article>
+          <article class="insight">
+            <span class="insight-num">04</span>
+            <p>真机反馈不可替代：一条「按钮被挡住」就足以推翻桌面上看起来合理的布局。</p>
+          </article>
+          <article class="insight">
+            <span class="insight-num">05</span>
+            <p>验证强度要匹配问题：推荐机制需要更多结构化测试；生活工具在早期可以主要靠自用观察，但要诚实写明证据边界。</p>
+          </article>
+          <article class="insight">
+            <span class="insight-num">06</span>
+            <p>过程资产本身也是作品：开发日志 → Skill，把第一次作品集的坑变成第二次的默认能力。</p>
+          </article>
+        </div>
+        <p class="reflection-close">把家里的私域工具做成可上线的形态，比多堆功能更重要：约束要写进设计，说明要写给试用的人听懂。</p>
+      </div>
+    </section>
+
+    <section class="section" id="demo">
+      <div class="wrap prose">
+        <p class="section-num">Demo</p>
+        <h2>线上体验</h2>
+        <p>已部署到 CloudBase。请用体验账号登录（非正式家人账号）：</p>
+        <p class="cred">用户名 test1 · 密码 Abcd1234</p>
+        <p class="notice-warn">
+          <strong>请用系统浏览器（Safari / Chrome）在地址栏打开完整链接。</strong>
+          当前仍是腾讯云默认域名：可能先出风险提示（点确认即可），也可能下载 <code>index.html</code>——手机、电脑都可能遇到，和打开方式、是否还在风险 Cookie 有效期内有关；请勿依赖主屏幕快捷方式。
+          我正在申请备案域名，绑定后即可去掉这层限制。重传部署解决不了这个问题。
+        </p>
+        <div class="actions">
+          <a class="btn btn-primary" href="https://remember-me-remember-me-d1gmd5iiu9d88c58a.webapps.tcloudbase.com" target="_blank" rel="noopener">打开 Remember Me</a>
+          <a class="btn btn-secondary" href="eatwhat.html">上一篇：今天吃什么</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="wrap inner">
+      <span>© 黄子骜 · Ziao Huang</span>
+      <a href="index.html">返回首页</a>
+    </div>
+  </footer>
+</body>
+</html>
