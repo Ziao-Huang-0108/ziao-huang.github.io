@@ -5,7 +5,6 @@
 ## 在线地址
 
 - GitHub Pages：[https://ziao-huang-0108.github.io/ziao-huang.github.io/](https://ziao-huang-0108.github.io/ziao-huang.github.io/)（以仓库 Pages 设置为准）
-- CloudBase 静态托管（默认域名）：[https://remember-me-d1gmd5iiu9d88c58a-1324990131.tcloudbaseapp.com/](https://remember-me-d1gmd5iiu9d88c58a-1324990131.tcloudbaseapp.com/)
 - 源码仓库：[https://github.com/Ziao-Huang-0108/ziao-huang.github.io](https://github.com/Ziao-Huang-0108/ziao-huang.github.io)
 
 ## 项目
