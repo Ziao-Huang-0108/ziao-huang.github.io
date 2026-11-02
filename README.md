@@ -4,8 +4,11 @@
 
 ## 在线地址
 
-- GitHub Pages：[https://ziao-huang-0108.github.io/ziao-huang.github.io/](https://ziao-huang-0108.github.io/ziao-huang.github.io/)（以仓库 Pages 设置为准）
+作品集网站只托管在 GitHub Pages（不再部署到 CloudBase）。
+
+- 作品集：[https://ziao-huang-0108.github.io/ziao-huang.github.io/](https://ziao-huang-0108.github.io/ziao-huang.github.io/)
 - 源码仓库：[https://github.com/Ziao-Huang-0108/ziao-huang.github.io](https://github.com/Ziao-Huang-0108/ziao-huang.github.io)
+- PDF 版本：`Ziao-Huang-Portfolio.pdf`（仓库根目录）
 
 ## 项目
 

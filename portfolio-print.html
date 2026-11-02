@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>黄子骜 · Ziao Huang｜作品集 PDF</title>
+  <style>
+    @page { size: A4; margin: 14mm 14mm 16mm; }
+    :root {
+      --ink: #14151a;
+      --mute: #5c606b;
+      --amber: #c45c26;
+      --line: rgba(20, 21, 26, 0.14);
+      --paper: #f4f5f7;
+    }
+    * { box-sizing: border-box; }
+    html, body {
+      margin: 0;
+      color: var(--ink);
+      font: 11pt/1.55 "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", Helvetica, Arial, sans-serif;
+      background: #fff;
+      -webkit-print-color-adjust: exact;
+      print-color-adjust: exact;
+    }
+    a { color: var(--amber); text-decoration: none; }
+    h1, h2, h3 { margin: 0 0 0.35em; line-height: 1.25; font-weight: 700; }
+    h1 { font-size: 22pt; letter-spacing: 0.02em; }
+    h2 {
+      font-size: 14pt;
+      border-bottom: 1.5px solid var(--ink);
+      padding-bottom: 0.25em;
+      margin-top: 1.4em;
+    }
+    h3 { font-size: 11.5pt; margin-top: 1em; }
+    p { margin: 0 0 0.65em; }
+    ul { margin: 0.2em 0 0.8em; padding-left: 1.2em; }
+    li { margin: 0.2em 0; }
+    .muted { color: var(--mute); }
+    .cover {
+      min-height: 90vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      page-break-after: always;
+      padding-top: 8mm;
+    }
+    .eyebrow {
+      color: var(--amber);
+      font-size: 9pt;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      margin-bottom: 1.2em;
+    }
+    .lead { font-size: 12pt; max-width: 38em; color: var(--ink); }
+    .meta {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px 24px;
+      margin-top: 28px;
+      padding: 14px 16px;
+      background: var(--paper);
+      border-left: 3px solid var(--amber);
+    }
+    .meta dt { font-size: 8.5pt; color: var(--mute); margin: 0; }
+    .meta dd { margin: 0 0 6px; font-weight: 600; }
+    .phones {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 18px;
+      margin-top: 28px;
+      align-items: end;
+    }
+    .phones figure { margin: 0; text-align: center; }
+    .phones img {
+      width: 100%;
+      max-width: 190px;
+      height: auto;
+      border-radius: 18px;
+      border: 1px solid var(--line);
+      box-shadow: 0 10px 24px rgba(20, 21, 26, 0.12);
+    }
+    .phones figcaption { margin-top: 8px; font-size: 9pt; color: var(--mute); }
+    .footer-line {
+      display: flex;
+      justify-content: space-between;
+      gap: 12px;
+      font-size: 9pt;
+      color: var(--mute);
+      border-top: 1px solid var(--line);
+      padding-top: 10px;
+      margin-top: 24px;
+    }
+    .case { page-break-before: always; }
+    .shot-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 10px;
+      margin: 12px 0 16px;
+    }
+    .shot-grid img {
+      width: 100%;
+      height: auto;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: var(--paper);
+    }
+    .shot-wide {
+      margin: 12px 0 16px;
+    }
+    .shot-wide img {
+      width: 100%;
+      max-height: 220px;
+      object-fit: contain;
+      object-position: top;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: var(--paper);
+    }
+    .callout {
+      background: var(--paper);
+      border-left: 3px solid var(--amber);
+      padding: 10px 12px;
+      margin: 10px 0 14px;
+      font-size: 10.5pt;
+    }
+    .label {
+      display: block;
+      font-size: 8pt;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--amber);
+      margin-bottom: 4px;
+    }
+    .links {
+      font-size: 9.5pt;
+      color: var(--mute);
+      margin-top: 10px;
+    }
+    .two-col {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px 18px;
+    }
+    @media print {
+      .cover { min-height: auto; height: 250mm; }
+    }
+  </style>
+</head>
+<body>
+  <section class="cover">
+    <div>
+      <p class="eyebrow">Portfolio · Product / Research / Ops</p>
+      <h1>黄子骜 · Ziao Huang</h1>
+      <p class="lead">
+        宁波诺丁汉大学 · 大四 · 数学与应用数学。
+        实习偏向用户研究、策略运营、数据分析、商业分析、产品运营等岗位。
+        两个作品都来自真实生活问题：多人吃饭难决定、家里东西找不到或过期——
+        做成可在线打开的产品，并写下从需求到方案、测试与落地的复盘。
+      </p>
+      <dl class="meta">
+        <div>
+          <dt>邮箱</dt>
+          <dd>zaozhi030108@outlook.com</dd>
+        </div>
+        <div>
+          <dt>作品集网站</dt>
+          <dd><a href="https://ziao-huang-0108.github.io/ziao-huang.github.io/">GitHub Pages</a></dd>
+        </div>
+        <div>
+          <dt>Case 1</dt>
+          <dd>今天吃什么 · 多人用餐决策</dd>
+        </div>
+        <div>
+          <dt>Case 2</dt>
+          <dd>Remember Me · 家庭物品本子</dd>
+        </div>
+      </dl>
+      <div class="phones">
+        <figure>
+          <img src="assets/hero/eatwhat.jpg" alt="今天吃什么" />
+          <figcaption>今天吃什么</figcaption>
+        </figure>
+        <figure>
+          <img src="assets/hero/remember-me.jpg" alt="Remember Me" />
+          <figcaption>Remember Me</figcaption>
+        </figure>
+      </div>
+    </div>
+    <div class="footer-line">
+      <span>在线完整版以 GitHub Pages 为准</span>
+      <span>https://ziao-huang-0108.github.io/ziao-huang.github.io/</span>
+    </div>
+  </section>
+
+  <section class="case">
+    <p class="eyebrow">Case 01 · Product Design · 2026.9</p>
+    <h2>今天吃什么</h2>
+    <p>
+      从多人用餐决策痛点出发：不是选出「最好吃」的店，而是协调多方需求，
+      快速给出一个大家都能接受的答案。定位为平台可增加的<strong>决策能力层</strong>——
+      免登录、点开即用；推荐机制更重，因此做了更多结构化测试。
+    </p>
+    <div class="callout">
+      <span class="label">Core question</span>
+      问题不是「找不到餐厅」，而是面对大量选择时，很难快速找到一个大家都能接受的答案。
+    </div>
+    <h3>做了什么</h3>
+    <div class="two-col">
+      <ul>
+        <li>成员档案：偏好、忌口与历史反馈可组合</li>
+        <li>场景与距离等条件结构化进推荐</li>
+        <li>推荐可解释：展示依据与评分构成</li>
+      </ul>
+      <ul>
+        <li>反馈闭环：用餐后评分回写成员</li>
+        <li>MVP 路径：成员 → 场景 → 距离 → 结果 → 详情</li>
+        <li>结构化测试记录问题与迭代</li>
+      </ul>
+    </div>
+    <h3>界面摘录</h3>
+    <div class="shot-grid">
+      <img src="assets/eatwhat/01-members-phone.jpg" alt="成员" />
+      <img src="assets/eatwhat/02-scene-phone.jpg" alt="场景" />
+      <img src="assets/eatwhat/04-result-phone.jpg" alt="结果" />
+    </div>
+    <p class="links">
+      Case：https://ziao-huang-0108.github.io/ziao-huang.github.io/eatwhat.html<br />
+      Demo：https://eatwhat-d8g01gpqk878dd6ed-1324990131.tcloudbaseapp.com
+    </p>
+  </section>
+
+  <section class="case">
+    <p class="eyebrow">Case 02 · Product Design · 2026.10</p>
+    <h2>Remember Me</h2>
+    <p>
+      全家共用的物品小本子：什么时候买了什么、放在哪、还有多久过期。
+      管的是家里的私密信息，因此需要登录；形态更接近<strong>独立 App 雏形</strong>。
+      迭代主要来自自用观察，并沉淀了「开发日志 → Skill」的过程方法。
+    </p>
+    <div class="callout">
+      <span class="label">Core question</span>
+      如何让一家人共用同一份物品本子，又能把家庭私密信息关在可控访问范围里？
+    </div>
+    <h3>做了什么</h3>
+    <div class="two-col">
+      <ul>
+        <li>登录与家庭私域数据</li>
+        <li>物品列表、位置与过期色标</li>
+        <li>从自用到可分享的体验账号</li>
+      </ul>
+      <ul>
+        <li>PWA + CloudBase + PostgreSQL 落地</li>
+        <li>上线约束与域名风控的真实取舍</li>
+        <li>开发日志沉淀为可复用 Skill</li>
+      </ul>
+    </div>
+    <h3>界面摘录</h3>
+    <div class="shot-grid">
+      <img src="assets/remember-me/03-login.png" alt="登录" />
+      <img src="assets/remember-me/05-items-colored.png" alt="物品列表" />
+      <img src="assets/remember-me/05-expiry-colors.png" alt="过期色标" />
+    </div>
+    <p class="links">
+      Case：https://ziao-huang-0108.github.io/ziao-huang.github.io/remember-me.html<br />
+      Demo：https://remember-me-remember-me-d1gmd5iiu9d88c58a.webapps.tcloudbase.com<br />
+      体验账号：test1 / Abcd1234
+    </p>
+    <div class="footer-line">
+      <span>© 黄子骜 · Ziao Huang</span>
+      <span>作品集仅托管于 GitHub Pages</span>
+    </div>
+  </section>
+</body>
+</html>
