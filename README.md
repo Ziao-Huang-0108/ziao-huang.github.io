@@ -8,7 +8,7 @@
 
 - 作品集：[https://ziao-huang-0108.github.io/ziao-huang.github.io/](https://ziao-huang-0108.github.io/ziao-huang.github.io/)
 - 源码仓库：[https://github.com/Ziao-Huang-0108/ziao-huang.github.io](https://github.com/Ziao-Huang-0108/ziao-huang.github.io)
-- PDF 版本：`Ziao-Huang-Portfolio.pdf`（仓库根目录）
+- PDF 版本：`Ziao-Huang-Portfolio.pdf`（横向 PPT 式；可用 `scripts/gen_pdf_diagrams.py` + `scripts/build_portfolio_pdf.py` 重生成）
 
 ## 项目
 
