@@ -4,3 +4,5 @@
 Thumbs.db
 *.pyc
 __pycache__/
+.venv-pdf/
+tmp-pdf-preview/
