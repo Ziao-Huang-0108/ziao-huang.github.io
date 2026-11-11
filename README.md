@@ -24,7 +24,7 @@
 全家共用的物品小本子。需登录的独立 App 雏形；迭代主要来自自用观察，并沉淀了开发日志 → Skill 的过程方法。
 
 - Case Study：`remember-me.html`
-- Demo：`https://remember-me-remember-me-d1gmd5iiu9d88c58a.webapps.tcloudbase.com`
+- Demo：`https://remembermezz.xyz`
 - 体验账号：`test1` / `Abcd1234`
 
 ## 本地预览

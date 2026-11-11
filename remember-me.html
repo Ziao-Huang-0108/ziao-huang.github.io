@@ -41,12 +41,12 @@
           <span>PWA · CloudBase · PostgreSQL</span>
         </div>
         <div class="actions">
-          <a class="btn btn-primary" href="https://remember-me-remember-me-d1gmd5iiu9d88c58a.webapps.tcloudbase.com" target="_blank" rel="noopener">打开线上 Demo</a>
+          <a class="btn btn-primary" href="https://remembermezz.xyz" target="_blank" rel="noopener">打开线上 Demo</a>
           <a class="btn btn-secondary" href="#toc">看目录</a>
         </div>
-        <p class="notice-warn">
-          请用系统浏览器打开完整链接；默认域名可能有风险提示。账号与说明见
-          <a href="#demo">线上体验</a>。
+        <p class="track-note" style="margin-top:12px">
+          正式入口 <a href="https://remembermezz.xyz" target="_blank" rel="noopener">remembermezz.xyz</a>
+          · 体验账号见 <a href="#demo">线上体验</a>。
         </p>
       </div>
     </section>
@@ -169,7 +169,7 @@
         </div>
         <p>给面试官 / 同学试用，我专门开了体验账号（非正式家人账号）：</p>
         <p class="cred">用户名 test1 · 密码 Abcd1234</p>
-        <p>打开方式与域名说明见 <a href="#demo">线上体验</a>。</p>
+        <p>正式入口与体验账号见 <a href="#demo">线上体验</a>。</p>
         <div class="shot-phone-row" style="margin-top:20px">
           <figure class="shot shot-phone">
             <img loading="lazy" decoding="async" src="assets/remember-me/03-login.png" alt="Remember Me 登录页（手机）" />
@@ -277,11 +277,12 @@
             库表本来就允许多家，这次主要改前端认家逻辑，没有改表结构。
           </p>
         </div>
-        <div class="issue warn">
-          <div class="head"><span class="num">07</span><h3>默认域名能开着开着变成下载——排查后改成诚实说明</h3></div>
+        <div class="issue ok">
+          <div class="head"><span class="num">07</span><h3>默认域名变成下载——排查后备案，正式入口换成自定义域名</h3></div>
           <p>
             默认域名有时正常、有时出风险页、有时下载 <code>index.html</code>；电脑曾能开后一直下载，手机删快捷方式再输网址又恢复。
-            是平台对未备案域名的策略，和打开方式、风险 Cookie 有关；经过尝试发现重传无效。短期解决方案是写清试用说明，根本解法是申请备案域名（目前正在申请中）。
+            是平台对未备案域名的策略，和打开方式、风险 Cookie 有关；重传部署无效。短期先把试用说明写清楚；根本解法是 ICP 备案并绑定自定义域名。
+            现已上线 <a href="https://remembermezz.xyz" target="_blank" rel="noopener">https://remembermezz.xyz</a>（SSL / DNS / 安全来源均已通），手机和电脑可正常打开，不再走默认域名风控。
           </p>
         </div>
       </div>
@@ -330,11 +331,11 @@
             </ul>
           </div>
           <div class="panel">
-            <div class="goal-title">备案自定义域名</div>
+            <div class="goal-title">家人试用与使用数据</div>
             <ul class="future-detail">
-              <li><strong>当前</strong>线上用 CloudBase 默认域名，可能出风险页或下载 <code>index.html</code>。</li>
-              <li><strong>局限</strong>和机型无关，和打开方式、风险 Cookie 有关；试用说明不得不写得很长。</li>
-              <li><strong>未来</strong>正在申请备案域名；绑上后去掉这层限制，链接可直接当正常网站分享。</li>
+              <li><strong>当前</strong>正式入口已是 <a href="https://remembermezz.xyz" target="_blank" rel="noopener">remembermezz.xyz</a>；本人手机 / 电脑验收通过。</li>
+              <li><strong>局限</strong>家人侧真实使用与反馈还不够；还缺「录了多少件、颜色提醒是否真帮到忙」等证据。</li>
+              <li><strong>未来</strong>收集家人原话与使用数据，再决定下一步是户型图、语音，还是先把录入路径再缩短。</li>
             </ul>
           </div>
         </div>
@@ -356,7 +357,7 @@
           </article>
           <article class="insight">
             <span class="insight-num">03</span>
-            <p>上线约束也要写进产品说明：默认域名的风控和机型无关，和打开方式、风险 Cookie 有关；说不清就会误导试用的人。</p>
+            <p>上线约束也要写进产品说明，并跟进到正式入口：默认域名风控说不清会误导试用；最终用已备案的 <a href="https://remembermezz.xyz" target="_blank" rel="noopener">remembermezz.xyz</a> 把限制拿掉。</p>
           </article>
           <article class="insight">
             <span class="insight-num">04</span>
@@ -379,15 +380,17 @@
       <div class="wrap prose">
         <p class="section-num">Demo</p>
         <h2>线上体验</h2>
-        <p>已部署到 CloudBase。请用体验账号登录（非正式家人账号）：</p>
+        <p>
+          正式入口已绑到已备案自定义域名
+          <a href="https://remembermezz.xyz" target="_blank" rel="noopener">https://remembermezz.xyz</a>
+          （CloudBase 静态托管）。请用体验账号登录（非正式家人账号）：
+        </p>
         <p class="cred">用户名 test1 · 密码 Abcd1234</p>
-        <p class="notice-warn">
-          <strong>请用系统浏览器（Safari / Chrome）在地址栏打开完整链接。</strong>
-          当前仍是腾讯云默认域名：可能先出风险提示（点确认即可），也可能下载 <code>index.html</code>——手机、电脑都可能遇到，和打开方式、是否还在风险 Cookie 有效期内有关；请勿依赖主屏幕快捷方式。
-          我正在申请备案域名，绑定后即可去掉这层限制。重传部署解决不了这个问题。
+        <p>
+          默认域名曾有风险页 / 强制下载问题，重传无效；现已用备案域名 + SSL + 安全来源解决，可直接当正常网站打开分享。
         </p>
         <div class="actions">
-          <a class="btn btn-primary" href="https://remember-me-remember-me-d1gmd5iiu9d88c58a.webapps.tcloudbase.com" target="_blank" rel="noopener">打开 Remember Me</a>
+          <a class="btn btn-primary" href="https://remembermezz.xyz" target="_blank" rel="noopener">打开 Remember Me</a>
           <a class="btn btn-secondary" href="eatwhat.html">上一篇：今天吃什么</a>
         </div>
       </div>
