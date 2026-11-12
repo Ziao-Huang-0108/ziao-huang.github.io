@@ -17,8 +17,8 @@
 多人用餐决策推荐原型。免登录、点开即用；更接近平台可增加的决策能力层。推荐机制更重，因此做了更多结构化测试。
 
 - Case Study：`eatwhat.html`
-- Demo：`https://eatwhat-d8g01gpqk878dd6ed-1324990131.tcloudbaseapp.com`
-
+- Demo：`https://eatwhat-d8g01gpqk878dd6ed-1324990131.tcloudbaseapp.com](https://eatwhat-eatwhat-d8g01gpqk878dd6ed.webapps.tcloudbase.com/?utm_source=chatgpt.com`
+  
 ### 2. Remember Me
 
 全家共用的物品小本子。需登录的独立 App 雏形；迭代主要来自自用观察，并沉淀了开发日志 → Skill 的过程方法。
