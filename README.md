@@ -17,7 +17,7 @@
 多人用餐决策推荐原型。免登录、点开即用；更接近平台可增加的决策能力层。推荐机制更重，因此做了更多结构化测试。
 
 - Case Study：`eatwhat.html`
-- Demo：`https://eatwhat-d8g01gpqk878dd6ed-1324990131.tcloudbaseapp.com](https://eatwhat-eatwhat-d8g01gpqk878dd6ed.webapps.tcloudbase.com/?utm_source=chatgpt.com`
+- Demo：`https://eatwhat-d8g01gpqk878dd6ed-1324990131.tcloudbaseapp.com](https://eatwhat-eatwhat-d8g01gpqk878dd6ed.webapps.tcloudbase.com`
   
 ### 2. Remember Me
 
